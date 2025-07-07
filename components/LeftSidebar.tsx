@@ -39,6 +39,7 @@ export default function LeftSidebar({
               alt="Lofi gif"
               width={100}
               height={40}
+              unoptimized
             />
           </div>
           <CatThoughts />

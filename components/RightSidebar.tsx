@@ -3,7 +3,12 @@
 import { LuX } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import { LuHouse, LuLightbulb, LuUserRound, LuMail } from "react-icons/lu";
+import {
+  LuHouse,
+  LuLightbulb,
+  //  LuUserRound,
+  LuMail,
+} from "react-icons/lu";
 
 export default function RightSidebar({
   open,

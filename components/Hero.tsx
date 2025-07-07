@@ -7,11 +7,11 @@ export default function Hero() {
       id="home"
     >
       <h1 className="text-6xl font-light bg-gradient-to-r from-purple-400  to-rose-500 inline-block text-transparent bg-clip-text drop-shadow-[0_0_5px_#f43f5e] mb-10">
-        Hi, I'm Armen
+        Hi, I&apos;m Armen
       </h1>
 
       <p className="text-xl text-gray-300 leading-8">
-        I’m a junior dev exploring the world of full-stack development.
+        I&rsquo;m a junior dev exploring the world of full-stack development.
         <br />
         <br />I enjoy creating clean, functional apps and constantly pushing
         myself to learn and improve.
