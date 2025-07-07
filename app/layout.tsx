@@ -7,6 +7,7 @@ import ClientLayout from "@/components/ClientLayout";
 
 const pixelFont = VT323({
   variable: "--font-vt323",
+  subsets: ["latin"],
   weight: "400",
 });
 
