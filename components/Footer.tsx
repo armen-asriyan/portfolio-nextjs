@@ -1,5 +1,5 @@
 "use client";
-import { MoveUpRight } from "lucide-react";
+import { MoveUp, MoveUpRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -80,10 +80,11 @@ export default function Footer() {
           <br className="md:hidden" /> All rights reserved.
         </p>
         <a
-          className="w-full text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
-          href="#top"
+          className="w-full text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center"
+          href="#"
         >
-          Scroll to top
+          Scroll to top{" "}
+          <MoveUp className="inline-block leading-0 -translate-y-[0.5px]" />
         </a>
         {/* Legal Notice | Privacy Policy */}
         <div className="w-full flex items-center justify-center gap-2.5">
