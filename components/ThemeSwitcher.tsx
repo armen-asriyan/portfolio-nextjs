@@ -16,6 +16,7 @@ export function ThemeSwitcher() {
         size="icon"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className="inline-flex items-center justify-center cursor-pointer"
+        aria-label="Toggle dark mode"
       >
         {theme === "dark" ? (
           isMounted ? (

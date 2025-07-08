@@ -16,16 +16,24 @@ export default function ClientLayoutWrapper({
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
+      // Close sidebars when switching to mobile
+      if (mobile) {
+        setLeftSidebarOpen(false);
+        setRightSidebarOpen(false);
+      } else {
+        // Open sidebars when switching to desktop
+        setLeftSidebarOpen(true);
+        setRightSidebarOpen(true);
+      }
     };
 
-    // Check on mount
+    // Initialize on mount
     handleResize();
 
-    // Listen for resize events
     window.addEventListener("resize", handleResize);
-
-    // Clean up listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 

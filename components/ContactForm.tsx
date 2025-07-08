@@ -97,7 +97,7 @@ export function ContactForm() {
         <FormField
           control={form.control}
           name="name"
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <>
               <FormItem>
                 <FormLabel>Name</FormLabel>
@@ -106,6 +106,10 @@ export function ContactForm() {
                     type="text"
                     placeholder="e.g. John Doe"
                     disabled={form.formState.isSubmitting}
+                    aria-invalid={!!fieldState.error} // Turn to boolean
+                    aria-describedby={
+                      fieldState.error ? "name-error" : undefined
+                    }
                     {...field}
                   />
                 </FormControl>
@@ -117,7 +121,7 @@ export function ContactForm() {
         <FormField
           control={form.control}
           name="email"
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
@@ -125,6 +129,10 @@ export function ContactForm() {
                   type="email"
                   placeholder="e.g. john.doe@example.com"
                   disabled={form.formState.isSubmitting}
+                  aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error ? "email-error" : undefined
+                  }
                   {...field}
                 />
               </FormControl>
@@ -135,7 +143,7 @@ export function ContactForm() {
         <FormField
           control={form.control}
           name="message"
-          render={({ field }) => (
+          render={({ field, fieldState }) => (
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
@@ -144,6 +152,10 @@ export function ContactForm() {
                   className="resize-y"
                   rows={4}
                   disabled={form.formState.isSubmitting}
+                  aria-invalid={!!fieldState.error}
+                  aria-describedby={
+                    fieldState.error ? "message-error" : undefined
+                  }
                   {...field}
                 />
               </FormControl>
@@ -154,11 +166,17 @@ export function ContactForm() {
         <input
           type="text"
           name="_honey"
-          style={{ display: "none" }}
           tabIndex={-1}
+          aria-hidden="true"
+          aria-label="Do not fill this out"
+          className="hidden"
         />
         {submitError && (
-          <p className="text-destructive text-sm" data-slot="form-message">
+          <p
+            className="text-destructive text-sm"
+            data-slot="form-message"
+            aria-live="assertive"
+          >
             {submitError.message}
           </p>
         )}

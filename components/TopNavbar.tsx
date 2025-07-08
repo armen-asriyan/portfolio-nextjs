@@ -17,6 +17,7 @@ export default function TopNavbar({
         size="icon"
         onClick={onMusicClick}
         className="inline-flex md:hidden items-center justify-center cursor-pointer"
+        aria-label="Toggle music panel"
       >
         <Music className="size-8" />
       </Button>
@@ -25,6 +26,7 @@ export default function TopNavbar({
         size="icon"
         onClick={onBarsClick}
         className="inline-flex md:hidden items-center justify-center cursor-pointer"
+        aria-label="Open navigation menu"
       >
         <Menu className="size-8" />
       </Button>

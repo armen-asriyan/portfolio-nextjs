@@ -37,6 +37,8 @@ export default function RightSidebar({
         size="icon"
         className="absolute top-4 right-4 inline-flex md:hidden items-center justify-center cursor-pointer"
         onClick={onClose}
+        aria-hidden="true"
+        tabIndex={-1}
       >
         {/* Control react-icons size with Tailwind */}
         {isMounted ? <X className="size-11" /> : <div className="w-11 h-11" />}

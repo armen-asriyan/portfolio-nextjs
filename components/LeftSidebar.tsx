@@ -27,6 +27,8 @@ export default function LeftSidebar({
         size="icon"
         className="absolute top-4 left-4 inline-flex md:hidden items-center justify-center cursor-pointer"
         onClick={onClose}
+        aria-hidden="true"
+        tabIndex={-1}
       >
         <X className="size-11" />
       </Button>
@@ -136,7 +138,7 @@ export default function LeftSidebar({
             rel="noopener noreferrer"
             aria-label="Download CV / Resume"
           >
-            Download CV / Resume
+            Download CV / Resume (PDF)
             <Download className="inline-block" />
           </a>
         </Button>

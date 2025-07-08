@@ -91,10 +91,13 @@ export default function LofiRadio() {
           }}
         />
 
+        {/* Mute / Unmute Button */}
         {isMuted ? (
           <motion.button
+            type="button"
             onClick={handleUnmute}
-            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 cursor-pointer rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 transition"
+            aria-label="Unmute"
+            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
             initial={
               isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
             }
@@ -107,16 +110,22 @@ export default function LofiRadio() {
           </motion.button>
         ) : (
           <button
+            type="button"
             onClick={handleMute}
-            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 cursor-pointer rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 transition"
+            aria-label="Mute"
+            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
           >
             <VolumeX className="w-5 h-5" />
           </button>
         )}
 
-        {/* Player controls */}
+        {/* Player Controls */}
         <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between px-4 py-2 dark:bg-black/50 rounded-md backdrop-blur-sm">
-          <motion.div
+          <motion.button
+            type="button"
+            onClick={handleSkipBack}
+            aria-label="Previous Stream"
+            className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             initial={
               isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
             }
@@ -125,13 +134,15 @@ export default function LofiRadio() {
             }
             transition={{ duration: 0.2 }}
           >
-            <SkipBack
-              onClick={handleSkipBack}
-              className="text-2xl text-purple-600 dark:text-gray-300 cursor-pointer drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] transition-all hover:scale-105"
-            />
-          </motion.div>
+            <SkipBack className="w-5 h-5" />
+          </motion.button>
+
           {isPlaying ? (
-            <motion.div
+            <motion.button
+              type="button"
+              onClick={handlePause}
+              aria-label="Pause"
+              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               initial={
                 isLoading
                   ? { opacity: 0, scale: 0.5 }
@@ -144,13 +155,14 @@ export default function LofiRadio() {
               }
               transition={{ duration: 0.2 }}
             >
-              <Pause
-                onClick={handlePause}
-                className="text-2xl text-purple-600 dark:text-gray-300 cursor-pointer drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] transition-all hover:scale-105"
-              />
-            </motion.div>
+              <Pause className="w-5 h-5" />
+            </motion.button>
           ) : (
-            <motion.div
+            <motion.button
+              type="button"
+              onClick={handlePlay}
+              aria-label="Play"
+              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               initial={
                 isLoading
                   ? { opacity: 0, scale: 0.5 }
@@ -163,13 +175,15 @@ export default function LofiRadio() {
               }
               transition={{ duration: 0.2 }}
             >
-              <Play
-                onClick={handlePlay}
-                className="text-2xl text-purple-600 dark:text-gray-300 cursor-pointer drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] transition-all hover:scale-105"
-              />
-            </motion.div>
+              <Play className="w-5 h-5" />
+            </motion.button>
           )}
-          <motion.div
+
+          <motion.button
+            type="button"
+            onClick={handleSkipForward}
+            aria-label="Next Stream"
+            className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             initial={
               isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
             }
@@ -178,11 +192,8 @@ export default function LofiRadio() {
             }
             transition={{ duration: 0.2 }}
           >
-            <SkipForward
-              onClick={handleSkipForward}
-              className="text-2xl text-purple-600 dark:text-gray-300 cursor-pointer drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] transition-all hover:scale-105"
-            />
-          </motion.div>
+            <SkipForward className="w-5 h-5" />
+          </motion.button>
         </div>
 
         {/* Volume slider  */}

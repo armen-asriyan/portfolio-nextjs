@@ -4,7 +4,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 export default function CatThoughts() {
   return (
-    <p
+    <h2
       className="text-xl md:text-2xl font-bold text-center text-gray-900 dark:text-gray-300 p-7"
       style={{ fontFamily: "var(--font-vt323)" }}
     >
@@ -26,6 +26,6 @@ export default function CatThoughts() {
         deleteSpeed={0}
         delaySpeed={3000}
       />
-    </p>
+    </h2>
   );
 }

@@ -25,7 +25,7 @@ export default function pyfSite() {
       <div className="overflow-hidden rounded-2xl">
         <Image
           src="/img/projects/project-pyfShowcaseSite.png"
-          alt="Screenshot of the Dashboard application"
+          alt="Screenshot of the company website"
           width={300}
           height={200}
           className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"

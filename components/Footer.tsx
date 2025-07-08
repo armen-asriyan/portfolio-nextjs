@@ -63,11 +63,10 @@ export default function Footer() {
             <a
               href="/cv/Armen_Asriyan_CV.pdf"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
-              // download="Armen_Asriyan_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Download CV / Resume
+              Download CV / Resume (PDF)
               <MoveUpRight className="inline-block" />
             </a>
           </div>
