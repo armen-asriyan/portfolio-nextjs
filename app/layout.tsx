@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, VT323 } from "next/font/google";
 
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvide";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import ClientLayout from "@/components/ClientLayout";
 
 const pixelFont = VT323({
@@ -28,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
+        suppressHydrationWarning
         className={`${barlow.className} ${pixelFont.variable} antialiased bg-background text-black dark:text-neutral`}
       >
         <ThemeProvider

@@ -6,18 +6,25 @@ import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Footer from "@/components/Footer";
 import LightEffect from "@/components/LightEffect";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 export default function ClientLayoutWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [leftSidebarOpen, setLeftSidebarOpen] = useState(false);
-  const [rightSidebarOpen, setRightSidebarOpen] = useState(false);
+  const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
+
+  const [leftSidebarOpen, setLeftSidebarOpen] = useState(
+    isSmallDevice ? false : true
+  );
+  const [rightSidebarOpen, setRightSidebarOpen] = useState(
+    isSmallDevice ? false : true
+  );
 
   // Prevent scrolling when left or right sidebar is open
   useEffect(() => {
-    if (leftSidebarOpen || rightSidebarOpen) {
+    if ((leftSidebarOpen || rightSidebarOpen) && isSmallDevice) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");

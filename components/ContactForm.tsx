@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -14,7 +15,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
+import { Check, Loader2Icon } from "lucide-react";
+
+const isDev = process.env.NODE_ENV === "development";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -24,20 +28,65 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
+  _honey: z.string().optional(),
 });
 
 export function ContactForm() {
+  const [submitError, setSubmitError] = useState<{
+    type: "rate_limit" | "server_error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const [success, setSuccess] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      _honey: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setSubmitError({ type: null, message: "" });
+
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (res.status === 429) {
+          setSubmitError({
+            type: "rate_limit",
+            message: data.message,
+          });
+          return;
+        }
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setSuccess(true);
+
+      setTimeout(() => {
+        form.reset();
+        form.clearErrors();
+        setSuccess(false);
+      }, 2000);
+
+      return data;
+    } catch (error: any) {
+      isDev && console.error(error);
+      setSubmitError({
+        type: "server_error",
+        message: "Something went wrong. Please try again later.",
+      });
+    }
   }
 
   return (
@@ -51,28 +100,10 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="e.g. John Doe" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
                   <Input
-                    type="email"
-                    placeholder="e.g. john.doe@example.com"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="How can I help you?"
-                    className="resize-y"
-                    rows={4}
+                    type="text"
+                    placeholder="e.g. John Doe"
+                    disabled={form.formState.isSubmitting}
                     {...field}
                   />
                 </FormControl>
@@ -81,8 +112,74 @@ export function ContactForm() {
             </>
           )}
         />
-        <Button type="submit" className="w-full cursor-pointer">
-          Submit
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  placeholder="e.g. john.doe@example.com"
+                  disabled={form.formState.isSubmitting}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="How can I help you?"
+                  className="resize-y"
+                  rows={4}
+                  disabled={form.formState.isSubmitting}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <input
+          type="text"
+          name="_honey"
+          style={{ display: "none" }}
+          tabIndex={-1}
+        />
+        {submitError && (
+          <p className="text-destructive text-sm" data-slot="form-message">
+            {submitError.message}
+          </p>
+        )}
+        <Button
+          type="submit"
+          className={`w-full cursor-pointer ${
+            success ? "bg-green-700 hover:bg-green-800 text-white" : ""
+          }`}
+          disabled={form.formState.isSubmitting || success}
+        >
+          {form.formState.isSubmitting ? (
+            <>
+              <span>Sending...</span>
+              <Loader2Icon className="ml-2 h-4 w-4 animate-spin" />
+            </>
+          ) : success ? (
+            <>
+              <span>Message Sent</span>
+              <Check className="ml-2 h-4 w-4" />
+            </>
+          ) : (
+            "Send Message"
+          )}
         </Button>
       </form>
     </Form>

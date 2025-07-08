@@ -5,7 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 export default function CatThoughts() {
   return (
     <p
-      className="text-base font-bold text-center text-white p-8"
+      className="text-xl md:text-2xl font-bold text-center text-gray-900 dark:text-gray-300 p-7"
       style={{ fontFamily: "var(--font-vt323)" }}
     >
       <Typewriter
