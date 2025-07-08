@@ -80,8 +80,10 @@ export function ContactForm() {
       }, 2000);
 
       return data;
-    } catch (error: any) {
-      isDev && console.error(error);
+    } catch (error: unknown) {
+      if (isDev) {
+        console.error(error);
+      }
       setSubmitError({
         type: "server_error",
         message: "Something went wrong. Please try again later.",

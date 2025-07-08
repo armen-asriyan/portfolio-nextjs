@@ -77,7 +77,7 @@ export default function EmailTemplate({
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
         }}
       >
-        Sent via the portfolio's contact form.
+        Sent via the portfolio&apos;s contact form.
         <br />
         <br />
         <a

@@ -6,30 +6,44 @@ import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Footer from "@/components/Footer";
 import LightEffect from "@/components/LightEffect";
-import { useMediaQuery } from "@uidotdev/usehooks";
 
 export default function ClientLayoutWrapper({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Check on mount
+    handleResize();
+
+    // Listen for resize events
+    window.addEventListener("resize", handleResize);
+
+    // Clean up listener on unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(
-    isSmallDevice ? false : true
+    isMobile ? false : true
   );
   const [rightSidebarOpen, setRightSidebarOpen] = useState(
-    isSmallDevice ? false : true
+    isMobile ? false : true
   );
 
   // Prevent scrolling when left or right sidebar is open
   useEffect(() => {
-    if ((leftSidebarOpen || rightSidebarOpen) && isSmallDevice) {
+    if ((leftSidebarOpen || rightSidebarOpen) && isMobile) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [leftSidebarOpen, rightSidebarOpen]);
+  }, [leftSidebarOpen, rightSidebarOpen, isMobile]);
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
@@ -72,6 +86,7 @@ export default function ClientLayoutWrapper({
           open={rightSidebarOpen}
           onClose={() => setRightSidebarOpen(false)}
           activeSection={activeSection}
+          isMobile={isMobile}
         />
       </div>
       <Footer />

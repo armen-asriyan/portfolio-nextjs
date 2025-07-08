@@ -1,5 +1,5 @@
 "use client";
-import { Mail } from "lucide-react";
+// import { Mail } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
 import { motion } from "motion/react";

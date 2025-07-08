@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Barlow, VT323 } from "next/font/google";
-
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClientLayout from "@/components/ClientLayout";

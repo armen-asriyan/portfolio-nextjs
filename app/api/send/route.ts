@@ -1,7 +1,7 @@
 import EmailTemplate from "@/components/EmailTemplate";
 import { Resend } from "resend";
 
-import { RateLimiterMemory } from "rate-limiter-flexible";
+import { RateLimiterMemory, RateLimiterRes } from "rate-limiter-flexible";
 const isDev = process.env.NODE_ENV === "development";
 
 const rateLimiter = new RateLimiterMemory({
@@ -29,31 +29,37 @@ export async function POST(req: Request) {
 
   try {
     await rateLimiter.consume(ip); // Consume 1 try
-    isDev && console.log(`Your ip ${ip}`);
-  } catch (limitReached: any) {
-    const retryAfter = Math.ceil(limitReached.msBeforeNext / 1000);
-
-    let retryAfterMessage = `Please try again in ${retryAfter} second(s)`;
-
-    if (retryAfter > 60) {
-      retryAfterMessage = `Please try again in ${Math.ceil(
-        retryAfter / 60
-      )} minute(s)`;
+    if (isDev) {
+      console.log(`Your ip ${ip}`);
     }
+  } catch (error: unknown) {
+    if (error instanceof RateLimiterRes) {
+      const retryAfter = Math.ceil(error.msBeforeNext / 1000);
 
-    return Response.json(
-      {
-        error: "Too many requests",
-        retryAfter, // Seconds until reset
-        message: retryAfterMessage,
-      },
-      {
-        status: 429,
-        headers: {
-          "Retry-After": retryAfter.toString(),
-        },
+      let retryAfterMessage = `Please try again in ${retryAfter} second(s)`;
+
+      if (retryAfter > 60) {
+        retryAfterMessage = `Please try again in ${Math.ceil(
+          retryAfter / 60
+        )} minute(s)`;
       }
-    );
+
+      return Response.json(
+        {
+          error: "Too many requests",
+          retryAfter, // Seconds until reset
+          message: retryAfterMessage,
+        },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": retryAfter.toString(),
+          },
+        }
+      );
+    } else {
+      return Response.json({ error }, { status: 500 });
+    }
   }
 
   try {
@@ -77,8 +83,14 @@ export async function POST(req: Request) {
     }
 
     return Response.json(data);
-  } catch (error) {
-    isDev && console.error(error);
+  } catch (error: unknown) {
+    if (isDev) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      } else {
+        console.error(error);
+      }
+    }
     return Response.json({ error }, { status: 500 });
   }
 }

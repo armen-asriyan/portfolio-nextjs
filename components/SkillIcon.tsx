@@ -1,9 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { ComponentType } from "react";
 
 type SkillIconProps = {
-  icon: React.ElementType;
+  icon: ComponentType<{ className?: string }>;
   hoverColor?: string;
   darkIcon?: boolean;
 };
@@ -13,7 +14,11 @@ export default function SkillIcon({
   hoverColor,
   darkIcon,
 }: SkillIconProps) {
-  const { theme, resolvedTheme } = useTheme();
+  const {
+    //  theme,
+    resolvedTheme,
+  } = useTheme();
+
   const isDarkTheme = resolvedTheme === "dark";
 
   const baseClasses =
@@ -34,7 +39,6 @@ export default function SkillIcon({
         if (hoverColor && !(isDarkTheme && darkIcon))
           e.currentTarget.style.color = "";
       }}
-      suppressHydrationWarning
     >
       <Icon className={`${baseClasses}`} />
     </div>

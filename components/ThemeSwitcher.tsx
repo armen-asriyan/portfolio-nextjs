@@ -1,11 +1,12 @@
 "use client";
-
+import useIsMounted from "@/hooks/useIsMounted";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 
 export function ThemeSwitcher() {
+  const isMounted = useIsMounted();
   const { setTheme, theme } = useTheme();
 
   return (
@@ -17,9 +18,15 @@ export function ThemeSwitcher() {
         className="inline-flex items-center justify-center cursor-pointer"
       >
         {theme === "dark" ? (
-          <Sun className="size-6" />
-        ) : (
+          isMounted ? (
+            <Sun className="size-6" />
+          ) : (
+            <div className="w-6 h-6" />
+          )
+        ) : isMounted ? (
           <Moon className="size-6" />
+        ) : (
+          <div className="w-6 h-6" />
         )}
       </Button>
     </div>

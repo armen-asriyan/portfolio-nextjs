@@ -23,26 +23,36 @@ import SkillIcon from "@/components/SkillIcon";
 
 import { motion } from "motion/react";
 
+import useIsMounted from "@/hooks/useIsMounted";
+
+type Skill = {
+  icon: React.ComponentType<{ className?: string }>;
+  hoverColor?: string;
+  darkIcon?: boolean;
+};
+
+const skills: Skill[] = [
+  { icon: SiJavascript, hoverColor: "#f7df1e" },
+  { icon: SiReact, hoverColor: "#61dafb" },
+  { icon: SiExpress, darkIcon: true },
+  { icon: SiNodedotjs, hoverColor: "#339933" },
+  { icon: SiMongodb, hoverColor: "#47a248" },
+  { icon: SiPostgresql, hoverColor: "#336791" },
+  { icon: SiSqlite, hoverColor: "#003b57" },
+  { icon: SiHtml5, hoverColor: "#e34f26" },
+  { icon: SiCss, hoverColor: "#663399" },
+  { icon: SiFigma, hoverColor: "#f24e1e" },
+  { icon: SiWordpress, hoverColor: "#21759b" },
+  { icon: SiGit, hoverColor: "#f05032" },
+  { icon: SiNextdotjs, hoverColor: "#000", darkIcon: true },
+  { icon: SiTailwindcss, hoverColor: "#38b2ac" },
+  { icon: SiVercel, hoverColor: "#000", darkIcon: true },
+  { icon: SiTypescript, hoverColor: "#3178c6" },
+  { icon: SiGithub, hoverColor: "#000", darkIcon: true },
+] as const;
+
 export default function Skills() {
-  const skills = [
-    { icon: SiJavascript, hoverColor: "#f7df1e" },
-    { icon: SiReact, hoverColor: "#61dafb" },
-    { icon: SiExpress, darkIcon: true },
-    { icon: SiNodedotjs, hoverColor: "#339933" },
-    { icon: SiMongodb, hoverColor: "#47a248" },
-    { icon: SiPostgresql, hoverColor: "#336791" },
-    { icon: SiSqlite, hoverColor: "#003b57" },
-    { icon: SiHtml5, hoverColor: "#e34f26" },
-    { icon: SiCss, hoverColor: "#663399" },
-    { icon: SiFigma, hoverColor: "#f24e1e" },
-    { icon: SiWordpress, hoverColor: "#21759b" },
-    { icon: SiGit, hoverColor: "#f05032" },
-    { icon: SiNextdotjs, hoverColor: "#000", darkIcon: true },
-    { icon: SiTailwindcss, hoverColor: "#38b2ac" },
-    { icon: SiVercel, hoverColor: "#000", darkIcon: true },
-    { icon: SiTypescript, hoverColor: "#3178c6" },
-    { icon: SiGithub, hoverColor: "#000", darkIcon: true },
-  ];
+  const isMounted = useIsMounted();
 
   return (
     <motion.section
@@ -64,7 +74,7 @@ export default function Skills() {
         variants={{
           hidden: { opacity: 0 },
           visible: {
-            opacity: 1,
+            opacity: isMounted ? 1 : 0,
             transition: {
               staggerChildren: 0.1, // Delay between each child animation
             },
@@ -88,11 +98,15 @@ export default function Skills() {
               },
             }}
           >
-            <SkillIcon
-              icon={skill.icon}
-              hoverColor={skill.hoverColor}
-              darkIcon={skill.darkIcon}
-            />
+            {isMounted ? (
+              <SkillIcon
+                icon={skill.icon}
+                hoverColor={skill.hoverColor}
+                darkIcon={skill.darkIcon}
+              />
+            ) : (
+              <div className="w-10 h-10" />
+            )}
           </motion.div>
         ))}
       </motion.div>

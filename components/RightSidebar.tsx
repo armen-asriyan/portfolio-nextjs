@@ -9,26 +9,28 @@ import {
   Mail,
   X,
 } from "lucide-react";
-import { useMediaQuery } from "@uidotdev/usehooks";
 import { motion } from "motion/react";
+
+import useIsMounted from "@/hooks/useIsMounted";
 
 export default function RightSidebar({
   open,
   onClose,
   activeSection,
+  isMobile,
 }: {
   open: boolean;
   onClose: () => void;
   activeSection: string | null;
+  isMobile: boolean;
 }) {
-  const isSmallDevice = useMediaQuery("only screen and (max-width : 768px)");
+  const isMounted = useIsMounted();
 
   return (
     <aside
       className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen md:w-1/4 z-50 md:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out ${
         open ? "translate-x-0" : "translate-x-full"
       } md:translate-x-0 md:sticky border-r border-muted shadow-lg overflow-hidden`}
-      suppressHydrationWarning
     >
       <Button
         variant="ghost"
@@ -37,7 +39,7 @@ export default function RightSidebar({
         onClick={onClose}
       >
         {/* Control react-icons size with Tailwind */}
-        <X className="size-11" />
+        {isMounted ? <X className="size-11" /> : <div className="w-11 h-11" />}
       </Button>
       {/* Nav buttons */}
       <motion.div
@@ -61,7 +63,7 @@ export default function RightSidebar({
               ? "bg-primary text-primary-foreground"
               : "text-gray-900 dark:text-gray-300"
           } hover:bg-primary hover:text-primary-foreground px-3 w-full h-12 cursor-pointer`}
-          onClick={isSmallDevice ? onClose : undefined}
+          onClick={isMobile ? onClose : undefined}
           variants={{
             hidden: { opacity: 0, x: 200 },
             visible: {
@@ -76,7 +78,11 @@ export default function RightSidebar({
             },
           }}
         >
-          <House className="size-6 mr-1" />
+          {isMounted ? (
+            <House className="size-11" />
+          ) : (
+            <div className="w-11 h-11" />
+          )}
           Home
         </motion.a>
         <motion.a
@@ -86,7 +92,7 @@ export default function RightSidebar({
               ? "bg-primary text-primary-foreground"
               : "text-gray-900 dark:text-gray-300"
           }`}
-          onClick={isSmallDevice ? onClose : undefined}
+          onClick={isMobile ? onClose : undefined}
           variants={{
             hidden: { opacity: 0, x: 200 },
             visible: {
@@ -101,7 +107,11 @@ export default function RightSidebar({
             },
           }}
         >
-          <Lightbulb className="size-6 mr-1" />
+          {isMounted ? (
+            <Lightbulb className="size-11" />
+          ) : (
+            <div className="w-11 h-11" />
+          )}
           Projects
         </motion.a>
         {/* <a
@@ -119,7 +129,7 @@ export default function RightSidebar({
               ? "bg-primary text-primary-foreground"
               : "text-gray-900 dark:text-gray-300 "
           }`}
-          onClick={isSmallDevice ? onClose : undefined}
+          onClick={isMobile ? onClose : undefined}
           variants={{
             hidden: { opacity: 0, x: 200 },
             visible: {
@@ -134,7 +144,11 @@ export default function RightSidebar({
             },
           }}
         >
-          <Mail className="size-6 mr-1" />
+          {isMounted ? (
+            <Mail className="size-11" />
+          ) : (
+            <div className="w-11 h-11" />
+          )}
           Contact
         </motion.a>
       </motion.div>
