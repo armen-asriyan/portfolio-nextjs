@@ -81,7 +81,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <House className="size-11" />
+            <House className="size-9 md:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}
@@ -110,7 +110,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <Lightbulb className="size-11" />
+            <Lightbulb className="size-9 md:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}
@@ -147,7 +147,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <Mail className="size-11" />
+            <Mail className="size-9 md:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}

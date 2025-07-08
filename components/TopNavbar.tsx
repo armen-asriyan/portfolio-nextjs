@@ -19,7 +19,7 @@ export default function TopNavbar({
         className="inline-flex md:hidden items-center justify-center cursor-pointer"
         aria-label="Toggle music panel"
       >
-        <Music className="size-8" />
+        <Music className="size-9" />
       </Button>
       <Button
         variant="ghost"
@@ -28,7 +28,7 @@ export default function TopNavbar({
         className="inline-flex md:hidden items-center justify-center cursor-pointer"
         aria-label="Open navigation menu"
       >
-        <Menu className="size-8" />
+        <Menu className="size-9" />
       </Button>
     </div>
   );

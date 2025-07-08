@@ -22,7 +22,7 @@ export default function SkillIcon({
   const isDarkTheme = resolvedTheme === "dark";
 
   const baseClasses =
-    "size-11 md:size-17 p-2 duration-300 ease-in-out transition-all hover:scale-110 hover:-translate-y-[1px] opacity-80 hover:opacity-100";
+    "size-11 md:size-14 p-2 duration-300 ease-in-out transition-all hover:scale-110 hover:-translate-y-[1px] opacity-80 hover:opacity-100";
 
   return (
     <div
