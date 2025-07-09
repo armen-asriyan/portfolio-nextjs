@@ -131,7 +131,7 @@ export default function LeftSidebar({
       </motion.div>
       {/* Actions and links */}
       <motion.div
-        className="flex flex-col items-center justify-center gap-4 mb-4 sm:gap-6 sm:mb-6"
+        className="flex flex-col items-center justify-center gap-4 mb-4 sm:gap-6 sm:mb-6 w-full"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
         transition={{
@@ -140,25 +140,16 @@ export default function LeftSidebar({
           ease: "easeOut",
         }}
       >
-        <Button
-          asChild
-          variant="ghost"
-          size="lg"
-          className="w-full max-w-full text-sm text-gray-300 hover:text-gray-100 md:text-base bg-gradient-to-t from-purple-800 to-violet-900 whitespace-normal break-words text-center"
+        <a
+          href="/cv/Armen_Asriyan_CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download CV / Resume"
+          className="text-sm text-gray-300 hover:text-gray-100 md:text-base md:w-fit bg-gradient-to-t from-purple-800 to-violet-900 w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800"
         >
-          <a
-            href="/cv/Armen_Asriyan_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download CV / Resume"
-            className="flex flex-wrap items-center justify-center gap-1 text-center w-full max-w-full overflow-hidden"
-          >
-            <span className="block w-full break-words">
-              Download CV / Resume (PDF)
-            </span>
-            <Download className="inline-block" />
-          </a>
-        </Button>
+          Download CV / Resume (PDF)
+          <Download className="inline-block" />
+        </a>
       </motion.div>
     </aside>
   );
