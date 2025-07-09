@@ -18,18 +18,18 @@ export default function Footer() {
             <p className="uppercase text-xs text-gray-700 dark:text-gray-300/80">
               NAV
             </p>
-            <a
+            <Link
               href="/"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
             >
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#projects"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
             >
               Projects
-            </a>
+            </Link>
           </div>
 
           {/* Social links  */}
@@ -43,7 +43,7 @@ export default function Footer() {
               href="https://github.com/armen-asriyan"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
             >
               GitHub
               <MoveUpRight className="inline-block" />
@@ -54,7 +54,7 @@ export default function Footer() {
               href="https://linkedin.com/in/armen-asriyan/"
               rel="noopener noreferrer"
               target="_blank"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
             >
               LinkedIn
               <MoveUpRight className="inline-block" />
@@ -64,14 +64,14 @@ export default function Footer() {
             <a
               href="mailto:hi@armenasriyan.dev"
               rel="noopener noreferrer"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
             >
               hi@armenasriyan.dev
               <MoveUpRight className="inline-block" />
             </a>
             <a
               href="/cv/Armen_Asriyan_CV.pdf"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+              className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -87,13 +87,15 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Armen Asriyan.{" "}
           <br className="md:hidden" /> All rights reserved.
         </p>
-        <a
-          className="w-full text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center"
-          href="#"
-        >
-          Scroll to top{" "}
-          <MoveUp className="inline-block leading-0 -translate-y-[0.5px]" />
-        </a>
+        <div className="w-full flex items-center justify-center">
+          <a
+            className="w-fit text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center"
+            href="#"
+          >
+            Scroll to top{" "}
+            <MoveUp className="inline-block leading-0 -translate-y-[0.5px]" />
+          </a>
+        </div>
         {/* Legal Notice | Privacy Policy */}
         <div className="w-full flex items-center justify-center gap-2.5">
           <Link

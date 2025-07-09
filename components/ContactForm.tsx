@@ -107,7 +107,7 @@ export function ContactForm() {
                     autoComplete="name"
                     placeholder="e.g. John Doe"
                     className="h-12"
-                    disabled={form.formState.isSubmitting}
+                    disabled={form.formState.isSubmitting || success}
                     aria-invalid={!!fieldState.error} // Turn to boolean
                     aria-describedby={
                       fieldState.error ? "name-error" : undefined
@@ -132,7 +132,7 @@ export function ContactForm() {
                   autoComplete="email"
                   placeholder="e.g. john.doe@example.com"
                   className="h-12"
-                  disabled={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting || success}
                   aria-invalid={!!fieldState.error}
                   aria-describedby={
                     fieldState.error ? "email-error" : undefined
@@ -155,7 +155,7 @@ export function ContactForm() {
                   placeholder="How can I help you?"
                   className="resize-y h-35"
                   rows={4}
-                  disabled={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting || success}
                   aria-invalid={!!fieldState.error}
                   aria-describedby={
                     fieldState.error ? "message-error" : undefined
