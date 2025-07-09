@@ -13,9 +13,11 @@ import { useRef, useState } from "react";
 export default function LeftSidebar({
   open,
   onClose,
+  isMobile,
 }: {
   open: boolean;
   onClose: () => void;
+  isMobile: boolean;
 }) {
   const [isRadioMuted, setIsRadioMuted] = useState(true);
   const purrAudioRef = useRef<HTMLAudioElement>(null);
@@ -23,10 +25,10 @@ export default function LeftSidebar({
 
   const handlePurr = () => {
     if (
+      typeof window !== "undefined" &&
       navigator.userActivation.hasBeenActive &&
       purrAudioRef.current &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(hover: hover)").matches
+      !isMobile
     ) {
       purrAudioRef.current.volume = 0.5;
       purrAudioRef.current.play();

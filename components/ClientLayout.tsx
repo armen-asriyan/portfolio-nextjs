@@ -88,6 +88,7 @@ export default function ClientLayoutWrapper({
         <LeftSidebar
           open={leftSidebarOpen}
           onClose={() => setLeftSidebarOpen(false)}
+          isMobile={isMobile}
         />
         <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto">
           {children}
