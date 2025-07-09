@@ -19,13 +19,13 @@ export default function Footer() {
               NAV
             </p>
             <a
-              href="https://armenasriyan.dev"
+              href="/"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               Home
             </a>
             <a
-              href="https://armenasriyan.dev/#projects"
+              href="/#projects"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               Projects
@@ -42,6 +42,7 @@ export default function Footer() {
             <a
               href="https://github.com/armen-asriyan"
               rel="noopener noreferrer"
+              target="_blank"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               GitHub
@@ -52,6 +53,7 @@ export default function Footer() {
             <a
               href="https://linkedin.com/in/armen-asriyan/"
               rel="noopener noreferrer"
+              target="_blank"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               LinkedIn
