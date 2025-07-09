@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import YouTube, { YouTubePlayer, YouTubeEvent } from "react-youtube";
+import { useRef, useState, useCallback, useEffect } from "react";
+import Image from "next/image";
 import {
   SkipBack,
   Pause,
@@ -12,191 +12,189 @@ import {
   Loader2Icon,
 } from "lucide-react";
 import { motion } from "motion/react";
+import useIsMounted from "@/hooks/useIsMounted";
 
 const streamIds = ["jfKfPfyJRdk", "S_MOd40zlYU"];
 
-export default function LofiRadio() {
-  const playerRef = useRef<YouTubePlayer | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+export default function LofiRadio({
+  isMuted,
+  setIsMuted,
+}: {
+  isMuted: boolean;
+  setIsMuted: (isMuted: boolean) => void;
+}) {
+  const isMounted = useIsMounted();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [videoIndex, setVideoIndex] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onPlayerReady = (event: YouTubeEvent) => {
-    setIsLoading(false);
-    playerRef.current = event.target;
-    setIsMuted(playerRef.current?.isMuted() ?? true);
-  };
+  const handleSkip = useCallback(
+    (direction: "next" | "prev") => {
+      setIsLoading(true);
+      const newIndex =
+        direction === "next"
+          ? (videoIndex + 1) % streamIds.length
+          : (videoIndex - 1 + streamIds.length) % streamIds.length;
+      setVideoIndex(newIndex);
+      setTimeout(() => setIsLoading(false), 600);
+    },
+    [videoIndex]
+  );
 
-  const onStateChange = (event: YouTubeEvent) => {
-    const playerState = event.data;
-    if (playerState === 1) setIsPlaying(true);
-    else if (playerState === 2 || playerState === 0) setIsPlaying(false);
+  // Post message to iframe
+  /**
+   *
+   * @param command a string with the command
+   * @param args an array of arguments, either a number or string, defaults to an empty array if no arguments passed
+   */
+  const postMessage = (command: string, args: (number | string)[] = []) => {
+    iframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func: command, args }),
+      "*"
+    );
   };
 
   const handlePlay = () => {
-    playerRef.current?.playVideo();
+    postMessage("playVideo");
+    setIsPlaying(true);
   };
 
   const handlePause = () => {
-    playerRef.current?.pauseVideo();
-  };
-
-  const handleSkipForward = () => {
-    const nextIndex = (videoIndex + 1) % streamIds.length;
-    setVideoIndex(nextIndex);
-    playerRef.current?.cueVideoById(streamIds[nextIndex]);
-    playerRef.current?.playVideo();
-  };
-
-  const handleSkipBack = () => {
-    const prevIndex = (videoIndex - 1 + streamIds.length) % streamIds.length;
-    setVideoIndex(prevIndex);
-    playerRef.current?.cueVideoById(streamIds[prevIndex]);
-    playerRef.current?.playVideo();
+    postMessage("pauseVideo");
+    setIsPlaying(false);
   };
 
   const handleMute = () => {
-    playerRef.current?.setVolume(0);
+    postMessage("mute");
     setIsMuted(true);
   };
 
   const handleUnmute = () => {
-    playerRef.current?.unMute();
-    playerRef.current?.setVolume(100);
+    postMessage("unMute");
+    postMessage("setVolume", [100]);
     setIsMuted(false);
   };
 
+  useEffect(() => {
+    const onIframeLoad = () => {
+      if (isMuted) {
+        postMessage("mute");
+        postMessage("setVolume", [0]);
+      } else {
+        postMessage("unMute");
+        postMessage("setVolume", [100]);
+      }
+      postMessage("playVideo");
+    };
+
+    const iframe = iframeRef.current;
+    if (iframe) iframe.addEventListener("load", onIframeLoad);
+    return () => iframe?.removeEventListener("load", onIframeLoad);
+  }, [videoIndex, isMuted]);
+
+  const PlayerFallback = () => (
+    <div className="flex items-center justify-center h-full bg-gray-100 dark:bg-gray-800 rounded-xl">
+      <Loader2Icon className="text-gray-300 animate-spin size-14" />
+    </div>
+  );
+
   return (
-    <div className="flex flex-col items-center justify-center gap-4 relative mb-4">
-      <div className="relative min-w-[300px] w-full h-[200px] overflow-hidden shadow-lg border border-gray-300 rounded-xl group">
-        {isLoading && (
-          <Loader2Icon className="text-gray-300 animate-spin absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] size-14" />
-        )}
-        <YouTube
-          videoId={streamIds[videoIndex]}
-          // loading="lazy"
-          onReady={onPlayerReady}
-          onStateChange={onStateChange}
-          opts={{
-            width: "100%",
-            height: "100%",
-            playerVars: {
-              autoplay: 1,
-              mute: 1, // allow autoplay
-              controls: 0,
-              modestbranding: 1,
-              rel: 0,
-            },
-          }}
+    <div className="flex flex-col w-full h-full items-center justify-center gap-4 relative mb-4 select-none">
+      <div className="relative w-full h-full overflow-hidden shadow-lg border border-gray-300 rounded-xl group">
+        <Image
+          src={`https://img.youtube.com/vi/${streamIds[videoIndex]}/maxresdefault.jpg`}
+          alt="Video thumbnail"
+          fill
+          className="object-cover rounded-xl"
+          loading="lazy"
+          unoptimized
         />
 
-        {/* Mute / Unmute Button */}
-        {isMuted ? (
-          <motion.button
-            type="button"
-            onClick={handleUnmute}
-            aria-label="Unmute"
-            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
-            initial={
-              isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
-            }
-            animate={
-              !isLoading ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
-            }
-            transition={{ duration: 0.2 }}
-          >
-            <Volume2 className="w-5 h-5" />
-          </motion.button>
-        ) : (
-          <button
-            type="button"
-            onClick={handleMute}
-            aria-label="Mute"
-            className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
-          >
-            <VolumeX className="w-5 h-5" />
-          </button>
-        )}
+        {isLoading && <PlayerFallback />}
 
-        {/* Player Controls */}
-        <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between px-4 py-2 dark:bg-black/50 rounded-md backdrop-blur-sm">
-          <motion.button
-            type="button"
-            onClick={handleSkipBack}
-            aria-label="Previous Stream"
-            className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
-            initial={
-              isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
-            }
-            animate={
-              !isLoading ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
-            }
-            transition={{ duration: 0.2 }}
-          >
-            <SkipBack className="w-5 h-5" />
-          </motion.button>
+        <div
+          className={`relative w-full h-full ${
+            isLoading ? "opacity-0" : "opacity-100"
+          } transition-opacity duration-300`}
+        >
+          {isMounted && (
+            <iframe
+              ref={iframeRef}
+              title="Lofi Radio"
+              className="w-full h-full rounded-xl"
+              allow="autoplay; encrypted-media"
+              src={`https://www.youtube-nocookie.com/embed/${
+                streamIds[videoIndex]
+              }?mute=1&autoplay=1&controls=0&modestbranding=1&rel=0&fs=0&enablejsapi=1&playsinline=1&iv_load_policy=3&disablekb=1&cc_load_policy=0&origin=${
+                typeof window !== "undefined" ? window.location.origin : ""
+              }`}
+            />
+          )}
+        </div>
 
-          {isPlaying ? (
+        {isMounted &&
+          (isMuted ? (
             <motion.button
               type="button"
-              onClick={handlePause}
-              aria-label="Pause"
-              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
-              initial={
-                isLoading
-                  ? { opacity: 0, scale: 0.5 }
-                  : { opacity: 1, scale: 1 }
-              }
-              animate={
-                !isLoading
-                  ? { opacity: 1, scale: 1 }
-                  : { opacity: 0, scale: 0.5 }
-              }
-              transition={{ duration: 0.2 }}
+              onClick={handleUnmute}
+              aria-label="Unmute"
+              className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
             >
-              <Pause className="w-5 h-5" />
+              <Volume2 className="w-5 h-5" />
             </motion.button>
           ) : (
             <motion.button
               type="button"
-              onClick={handlePlay}
-              aria-label="Play"
-              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
-              initial={
-                isLoading
-                  ? { opacity: 0, scale: 0.5 }
-                  : { opacity: 1, scale: 1 }
-              }
-              animate={
-                !isLoading
-                  ? { opacity: 1, scale: 1 }
-                  : { opacity: 0, scale: 0.5 }
-              }
-              transition={{ duration: 0.2 }}
+              onClick={handleMute}
+              aria-label="Mute"
+              className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:text-gray-400 focus:outline-none focus:ring transition cursor-pointer"
             >
-              <Play className="w-5 h-5" />
+              <VolumeX className="w-5 h-5" />
             </motion.button>
-          )}
+          ))}
 
-          <motion.button
-            type="button"
-            onClick={handleSkipForward}
-            aria-label="Next Stream"
-            className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
-            initial={
-              isLoading ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }
-            }
-            animate={
-              !isLoading ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
-            }
-            transition={{ duration: 0.2 }}
-          >
-            <SkipForward className="w-5 h-5" />
-          </motion.button>
-        </div>
+        {isMounted && (
+          <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between px-4 py-2 dark:bg-black/50 rounded-md backdrop-blur-sm">
+            <motion.button
+              type="button"
+              onClick={() => handleSkip("prev")}
+              aria-label="Previous Stream"
+              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
+            >
+              <SkipBack className="w-5 h-5" />
+            </motion.button>
 
-        {/* Volume slider  */}
+            {isPlaying ? (
+              <motion.button
+                type="button"
+                onClick={handlePause}
+                aria-label="Pause"
+                className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
+              >
+                <Pause className="w-5 h-5" />
+              </motion.button>
+            ) : (
+              <motion.button
+                type="button"
+                onClick={handlePlay}
+                aria-label="Play"
+                className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
+              >
+                <Play className="w-5 h-5" />
+              </motion.button>
+            )}
+
+            <motion.button
+              type="button"
+              onClick={() => handleSkip("next")}
+              aria-label="Next Stream"
+              className="text-purple-600 dark:text-gray-300 p-2 rounded-full hover:scale-105 focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
+            >
+              <SkipForward className="w-5 h-5" />
+            </motion.button>
+          </div>
+        )}
       </div>
     </div>
   );

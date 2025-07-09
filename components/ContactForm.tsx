@@ -100,11 +100,13 @@ export function ContactForm() {
           render={({ field, fieldState }) => (
             <>
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel className="mb-1.5">Name</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
+                    autoComplete="name"
                     placeholder="e.g. John Doe"
+                    className="h-12"
                     disabled={form.formState.isSubmitting}
                     aria-invalid={!!fieldState.error} // Turn to boolean
                     aria-describedby={
@@ -123,11 +125,13 @@ export function ContactForm() {
           name="email"
           render={({ field, fieldState }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="mb-1.5">Email</FormLabel>
               <FormControl>
                 <Input
                   type="email"
+                  autoComplete="email"
                   placeholder="e.g. john.doe@example.com"
+                  className="h-12"
                   disabled={form.formState.isSubmitting}
                   aria-invalid={!!fieldState.error}
                   aria-describedby={
@@ -145,11 +149,11 @@ export function ContactForm() {
           name="message"
           render={({ field, fieldState }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel className="mb-1.5">Message</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="How can I help you?"
-                  className="resize-y"
+                  className="resize-y h-35"
                   rows={4}
                   disabled={form.formState.isSubmitting}
                   aria-invalid={!!fieldState.error}

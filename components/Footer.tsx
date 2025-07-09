@@ -9,9 +9,7 @@ export default function Footer() {
       <div className="w-full flex flex-col md:flex-row items-start justify-center gap-5 py-8">
         {/* Logo  */}
         <div className="w-full flex items-center justify-start md:justify-center">
-          <div className="w-12 h-24 bg-gray-200 rounded-2xl flex items-center justify-center">
-            <span className="text-gray-500">Logo</span>
-          </div>
+          <div className="w-12 h-24 bg-gray-200 rounded-2xl flex items-center justify-center"></div>
         </div>
         {/* Nav and social links */}
         <div className="w-full flex flex-col md:flex-row items-start justify-center gap-5">
@@ -39,22 +37,31 @@ export default function Footer() {
             <p className="uppercase text-xs text-gray-700 dark:text-gray-300/80">
               SOCIAL
             </p>
+
+            {/* GitHub */}
             <a
-              href="https://www.linkedin.com/in/armen-asriyan/"
-              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
-            >
-              LinkedIn
-              <MoveUpRight className="inline-block" />
-            </a>
-            <a
-              href="https://github.com/armenasriyan"
+              href="https://github.com/armen-asriyan"
+              rel="noopener noreferrer"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               GitHub
               <MoveUpRight className="inline-block" />
             </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://linkedin.com/in/armen-asriyan/"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
+            >
+              LinkedIn
+              <MoveUpRight className="inline-block" />
+            </a>
+
+            {/* Mail */}
             <a
               href="mailto:hi@armenasriyan.dev"
+              rel="noopener noreferrer"
               className="text-sm text-gray-900 dark:text-white underline transition-colors duration-300 hover:text-gray-400"
             >
               hi@armenasriyan.dev

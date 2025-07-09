@@ -16,7 +16,7 @@ export default function ClientLayoutWrapper({
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768;
+      const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
 
       // Close sidebars when switching to mobile
@@ -89,7 +89,9 @@ export default function ClientLayoutWrapper({
           open={leftSidebarOpen}
           onClose={() => setLeftSidebarOpen(false)}
         />
-        <main className="w-full md:w-1/2 p-6 overflow-y-auto">{children}</main>
+        <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto">
+          {children}
+        </main>
         <RightSidebar
           open={rightSidebarOpen}
           onClose={() => setRightSidebarOpen(false)}

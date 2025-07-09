@@ -28,14 +28,17 @@ export default function RightSidebar({
 
   return (
     <aside
-      className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen md:w-1/4 z-50 md:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out ${
-        open ? "translate-x-0" : "translate-x-full"
-      } md:translate-x-0 md:sticky border-r border-muted shadow-lg overflow-hidden`}
+      className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
+        open ? "translate-x-0 visible" : "translate-x-full invisible "
+      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden`}
+      aria-hidden={!open}
+      tabIndex={open ? 0 : -1}
+      aria-label="Navigation panel"
     >
       <Button
         variant="ghost"
         size="icon"
-        className="absolute top-4 right-4 inline-flex md:hidden items-center justify-center cursor-pointer"
+        className="absolute top-4 right-4 inline-flex lg:hidden items-center justify-center cursor-pointer"
         onClick={onClose}
         aria-hidden="true"
         tabIndex={-1}
@@ -81,7 +84,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <House className="size-9 md:size-8 mr-3" />
+            <House className="size-9 lg:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}
@@ -110,7 +113,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <Lightbulb className="size-9 md:size-8 mr-3" />
+            <Lightbulb className="size-9 lg:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}
@@ -147,7 +150,7 @@ export default function RightSidebar({
           }}
         >
           {isMounted ? (
-            <Mail className="size-9 md:size-8 mr-3" />
+            <Mail className="size-9 lg:size-8 mr-3" />
           ) : (
             <div className="w-11 h-11" />
           )}
