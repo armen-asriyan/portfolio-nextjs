@@ -4,10 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer({
-  activeSection,
   setActiveSection,
 }: {
-  activeSection: string | null;
   setActiveSection: (section: string) => void;
 }) {
   const handleClick = (section: string) => {
