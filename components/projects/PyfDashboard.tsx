@@ -1,10 +1,16 @@
 "use client";
 import Image from "next/image";
-import { MoveRight } from "lucide-react";
+// import Link from "next/link";
+// import { MoveRight } from "lucide-react";
 
 export default function PyfDashboard() {
   return (
-    <article className="group flex flex-col gap-2 bg-gradient-to-b from-purple-500/70 to-indigo-400/80 dark:from-purple-900/30 dark:to-indigo-800/30 rounded-2xl px-2.5 py-8 cursor-pointer transition-all hover:-translate-y-1">
+    // <Link
+    //   href="https://printyourfeet.com"
+    //   target="_blank"
+    //   rel="noopener noreferrer"
+    // >
+    <article className="group h-fit w-full flex flex-col gap-2 bg-gradient-to-b from-purple-500/70 to-indigo-400/80 dark:from-purple-900/30 dark:to-indigo-800/30 rounded-2xl px-2.5 py-8 cursor-pointer transition-all hover:-translate-y-1">
       {/* Project top section */}
       <div className="flex justify-between items-center px-2.5 mb-2">
         {/* Project text section */}
@@ -18,7 +24,25 @@ export default function PyfDashboard() {
             2025
           </small>
         </div>
-        <MoveRight className="text-4xl text-neutral-100 dark:text-gray-300 drop-shadow-[0_0_3px_rgba(255,255,255,0.4)] dark:drop-shadow-[0_0_5px_#EFBF04]" />
+
+        {/* Arrow icon */}
+        {/* <MoveRight className="text-4xl text-gray-900 drop-shadow-[0_0_3px_#d1d5db] dark:text-gray-300 dark:drop-shadow-[0_0_5px_#EFBF04] group-hover:translate-x-1 transition-transform duration-300 ease-in-out" /> */}
+      </div>
+
+      {/* Technologies */}
+      <div className="flex flex-wrap w-full gap-2 my-2 text-sm font-semibold px-2.5">
+        <span className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800">
+          React
+        </span>
+        <span className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800">
+          Express
+        </span>
+        <span className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800">
+          MongoDB
+        </span>
+        <span className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800">
+          Cloudinary
+        </span>
       </div>
 
       {/* Image section with group-hover scaling */}
@@ -32,5 +56,6 @@ export default function PyfDashboard() {
         />
       </div>
     </article>
+    // </Link>
   );
 }

@@ -56,26 +56,26 @@ export default function ClientLayoutWrapper({
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries.find((entry) => entry.isIntersecting);
-        if (entry) {
-          setActiveSection(entry.target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: "0px 0px -50% 0px",
-        threshold: 0.1,
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      const entry = entries.find((entry) => entry.isIntersecting);
+      if (entry) {
+        setActiveSection(entry.target?.id);
       }
-    );
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -40% 0px",
+    });
 
     const sections = document.querySelectorAll("section[id]");
-
     sections.forEach((section) => observer.observe(section));
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+    };
+  }, [children]); // Add children as dependency
 
   return (
     <>
@@ -97,10 +97,11 @@ export default function ClientLayoutWrapper({
           open={rightSidebarOpen}
           onClose={() => setRightSidebarOpen(false)}
           activeSection={activeSection}
+          setActiveSection={setActiveSection}
           isMobile={isMobile}
         />
       </div>
-      <Footer />
+      <Footer setActiveSection={setActiveSection} />
     </>
   );
 }

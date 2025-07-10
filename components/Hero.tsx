@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 export default function Hero() {
   return (
     <motion.section
-      className="h-fit w-full flex flex-col items-start justify-start px-6 md:px-16 py-10 md:py-24 scroll-mt-20"
+      className="h-fit w-full flex flex-col items-start justify-start px-6 md:px-16 py-10 md:py-24 scroll-mt-25"
       id="home"
       initial={{ opacity: 0.1 }}
       animate={{ opacity: 1 }}

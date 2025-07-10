@@ -2,14 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import {
-  House,
-  Lightbulb,
-  //  UserRound,
-  Mail,
-  X,
-} from "lucide-react";
+import { House, Lightbulb, Mail, ToolCase, X } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 import useIsMounted from "@/hooks/useIsMounted";
 
@@ -17,14 +12,22 @@ export default function RightSidebar({
   open,
   onClose,
   activeSection,
+  setActiveSection,
   isMobile,
 }: {
   open: boolean;
   onClose: () => void;
   activeSection: string | null;
+  setActiveSection: (section: string | null) => void;
+
   isMobile: boolean;
 }) {
   const isMounted = useIsMounted();
+
+  const handleClick = (section: string) => {
+    setActiveSection(section);
+    if (isMobile) onClose();
+  };
 
   return (
     <aside
@@ -61,101 +64,129 @@ export default function RightSidebar({
           },
         }}
       >
-        <motion.a
-          href="#home"
-          className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  ${
-            activeSection === "home"
-              ? "bg-primary text-primary-foreground"
-              : "text-gray-900 dark:text-gray-300"
-          } hover:bg-primary hover:text-primary-foreground px-3 w-full h-12 cursor-pointer`}
-          onClick={isMobile ? onClose : undefined}
-          variants={{
-            hidden: { opacity: 0, x: 200 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: {
-                type: "spring",
-                stiffness: 80,
-                damping: 16,
-                duration: 0.5,
+        <Link href="/#home" className="w-full">
+          <motion.div
+            className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  ${
+              activeSection === "home"
+                ? "bg-primary text-primary-foreground"
+                : "text-gray-900 dark:text-gray-300"
+            } hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer`}
+            onClick={() => handleClick("home")}
+            variants={{
+              hidden: { opacity: 0, x: 200 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 16,
+                  duration: 0.5,
+                },
               },
-            },
-          }}
-        >
-          {isMounted ? (
-            <House className="size-9 lg:size-8 mr-3" />
-          ) : (
-            <div className="w-11 h-11" />
-          )}
-          Home
-        </motion.a>
-        <motion.a
-          href="#projects"
-          className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground px-3 w-full h-12 cursor-pointer ${
-            activeSection === "projects"
-              ? "bg-primary text-primary-foreground"
-              : "text-gray-900 dark:text-gray-300"
-          }`}
-          onClick={isMobile ? onClose : undefined}
-          variants={{
-            hidden: { opacity: 0, x: 200 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 16,
-                duration: 0.5,
+            }}
+          >
+            {isMounted ? (
+              <House className="size-9 lg:size-8 mr-3" />
+            ) : (
+              <div className="w-11 h-11" />
+            )}
+            Home
+          </motion.div>
+        </Link>
+
+        <Link href="/#skills" className="w-full">
+          <motion.div
+            className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
+              activeSection === "skills"
+                ? "bg-primary text-primary-foreground"
+                : "text-gray-900 dark:text-gray-300"
+            }`}
+            onClick={() => handleClick("projects")}
+            variants={{
+              hidden: { opacity: 0, x: 200 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 16,
+                  duration: 0.5,
+                },
               },
-            },
-          }}
-        >
-          {isMounted ? (
-            <Lightbulb className="size-9 lg:size-8 mr-3" />
-          ) : (
-            <div className="w-11 h-11" />
-          )}
-          Projects
-        </motion.a>
-        {/* <a
-          href="#about"
-          className="inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground px-3 w-full h-12 cursor-pointer"
-          onClick={onClose}
-        >
-          <UserRound className="size-6 mr-1" />
-          About
-        </a> */}
-        <motion.a
-          href="#contact"
-          className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground px-3 w-full h-12 cursor-pointer ${
-            activeSection === "contact"
-              ? "bg-primary text-primary-foreground"
-              : "text-gray-900 dark:text-gray-300 "
-          }`}
-          onClick={isMobile ? onClose : undefined}
-          variants={{
-            hidden: { opacity: 0, x: 200 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 16,
-                duration: 0.5,
+            }}
+          >
+            {isMounted ? (
+              <ToolCase className="size-9 lg:size-8 mr-3" />
+            ) : (
+              <div className="w-11 h-11" />
+            )}
+            Skills
+          </motion.div>
+        </Link>
+
+        <Link href="/#projects" className="w-full">
+          <motion.div
+            className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
+              activeSection === "projects"
+                ? "bg-primary text-primary-foreground"
+                : "text-gray-900 dark:text-gray-300"
+            }`}
+            onClick={() => handleClick("projects")}
+            variants={{
+              hidden: { opacity: 0, x: 200 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 16,
+                  duration: 0.5,
+                },
               },
-            },
-          }}
-        >
-          {isMounted ? (
-            <Mail className="size-9 lg:size-8 mr-3" />
-          ) : (
-            <div className="w-11 h-11" />
-          )}
-          Contact
-        </motion.a>
+            }}
+          >
+            {isMounted ? (
+              <Lightbulb className="size-9 lg:size-8 mr-3" />
+            ) : (
+              <div className="w-11 h-11" />
+            )}
+            Projects
+          </motion.div>
+        </Link>
+
+        <Link href="/#contact" className="w-full">
+          <motion.div
+            className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
+              activeSection === "contact"
+                ? "bg-primary text-primary-foreground"
+                : "text-gray-900 dark:text-gray-300 "
+            }`}
+            onClick={() => handleClick("contact")}
+            variants={{
+              hidden: { opacity: 0, x: 200 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 16,
+                  duration: 0.5,
+                },
+              },
+            }}
+          >
+            {isMounted ? (
+              <Mail className="size-9 lg:size-8 mr-3" />
+            ) : (
+              <div className="w-11 h-11" />
+            )}
+            Contact
+          </motion.div>
+        </Link>
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}

@@ -7,14 +7,14 @@ import { motion } from "motion/react";
 export function Contact() {
   return (
     <motion.section
-      className="h-fit w-full flex flex-col items-start justify-start px-3 md:px-16 py-2.5 mb-10 scroll-mt-20"
+      className="h-fit w-full flex flex-col items-start justify-start px-3 md:px-16 py-2.5 mb-20 scroll-mt-25"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.2 }}
       id="contact"
     >
-      <h2 className="text-5xl bg-gradient-to-r from-rose-600 to-yellow-700 inline-block text-transparent bg-clip-text drop-shadow-[0_0_5px_#ff4573] mb-10 px-6">
+      <h2 className="text-5xl bg-gradient-to-r from-rose-600 to-yellow-700 inline-block text-transparent bg-clip-text drop-shadow-[0_0_5px_#ff4573] mb-10 px-6 lg:px-0">
         Contact
       </h2>
 
@@ -51,11 +51,11 @@ export function Contact() {
 
             {/* Mail */}
             <a
-              href="mailto:hi@armen-asriyan.dev"
+              href="mailto:hi@armenasriyan.dev"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
             >
-              hi@armen-asriyan.dev
+              hi@armenasriyan.dev
             </a>
           </div>
         </div>
