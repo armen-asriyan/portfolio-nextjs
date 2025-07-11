@@ -1,6 +1,6 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Barlow, VT323 } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ClientLayout from "@/components/ClientLayout";
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: "https://armenasriyan.dev/",
     images: [
       {
-        url: "https://armenasriyan.dev/og-image.png",
+        url: "https://armenasriyan.dev/media/og-image.png",
         width: 1200,
         height: 630,
         alt: "Armen Asriyan - Junior Full-Stack Developer",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "Armen Asriyan - Junior Full-Stack Developer",
     description:
       "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies.",
-    images: ["https://armenasriyan.dev/og-image.png"],
+    images: ["https://armenasriyan.dev/media/og-image.png"],
     creator: "@armenasriyan",
   },
 };
@@ -63,7 +63,7 @@ const jsonLd = {
   jobTitle: "Junior Full-Stack Developer",
   description:
     "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies.",
-  image: "https://armenasriyan.dev/og-image.png",
+  image: "https://armenasriyan.dev//media/og-image.png",
   sameAs: [
     "https://github.com/armen-asriyan",
     "https://www.linkedin.com/in/armen-asriyan/",
@@ -77,6 +77,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
+        {/* JsonLd */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

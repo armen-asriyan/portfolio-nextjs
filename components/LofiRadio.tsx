@@ -2,6 +2,8 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
 import {
   SkipBack,
   Pause,
@@ -27,15 +29,21 @@ const randomstreamId = Math.floor(Math.random() * streamIds.length);
 export default function LofiRadio({
   isMuted,
   setIsMuted,
+  closeSidebar,
 }: {
   isMuted: boolean;
   setIsMuted: (isMuted: boolean) => void;
+  closeSidebar: () => void;
 }) {
   const isMounted = useIsMounted();
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [videoIndex, setVideoIndex] = useState(randomstreamId);
-  const [isLoading, setIsLoading] = useState(false);
+
+  type ConsentState = true | false | undefined;
+  const [consentGiven, setConsentGiven] = useState<ConsentState>(undefined);
+
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [videoIndex, setVideoIndex] = useState<number>(randomstreamId);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSkip = useCallback(
     (direction: "next" | "prev") => {
@@ -84,6 +92,36 @@ export default function LofiRadio({
     setIsMuted(false);
   };
 
+  const handleConsent = (consent: ConsentState) => {
+    if (consent) {
+      setConsentGiven(true);
+      setIsPlaying(true);
+      setIsMuted(false);
+      localStorage.setItem("yt-consent", "true");
+    } else if (consent === false) {
+      setConsentGiven(false);
+      setIsPlaying(false);
+      setIsMuted(true);
+      localStorage.setItem("yt-consent", "false");
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedConsent = localStorage.getItem("yt-consent");
+
+      if (storedConsent === "true") {
+        setConsentGiven(true);
+        setIsMuted(true);
+        setIsPlaying(true);
+      } else if (storedConsent === "false") {
+        setConsentGiven(false);
+        setIsMuted(false);
+        setIsPlaying(false);
+      }
+    }
+  }, [setIsMuted, setIsPlaying]);
+
   useEffect(() => {
     const onIframeLoad = () => {
       if (isMuted) {
@@ -108,7 +146,7 @@ export default function LofiRadio({
   );
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-center gap-4 relative mb-4 select-none shadow-[0_0_25px] shadow-black/40 dark:shadow-[0_0_25px] dark:shadow-white/40 border border-gray-700 dark:border-gray-300 rounded-xl bg-gray-900 dark:bg-gray-100">
+    <div className="flex flex-col w-full h-full items-center justify-center gap-4 relative mb-4 select-none shadow-[0_0_25px] shadow-black/40 dark:shadow-[0_0_25px] dark:shadow-white/40 border border-gray-700 dark:border-gray-300 rounded-xl bg-gray-90">
       <div className="relative w-full h-full overflow-hidden shadow-lg border border-gray-700 dark:border-gray-300 rounded-xl group">
         {isMounted ? (
           <Image
@@ -136,7 +174,7 @@ export default function LofiRadio({
             isLoading ? "opacity-0" : "opacity-100"
           } transition-opacity duration-300`}
         >
-          {isMounted && (
+          {isMounted && consentGiven ? (
             <iframe
               ref={iframeRef}
               width="100%"
@@ -146,21 +184,102 @@ export default function LofiRadio({
               allow="autoplay; encrypted-media"
               src={`https://www.youtube-nocookie.com/embed/${
                 streamIds[videoIndex]
-              }?mute=1&autoplay=1&controls=0&modestbranding=1&rel=0&fs=0&enablejsapi=1&playsinline=1&iv_load_policy=3&disablekb=1&cc_load_policy=0&origin=${
+              }?mute=0&autoplay=1&controls=0&modestbranding=1&rel=0&fs=0&enablejsapi=1&playsinline=1&iv_load_policy=3&disablekb=1&cc_load_policy=0&origin=${
                 typeof window !== "undefined" ? window.location.origin : ""
-              }
-              `}
+              }`}
             />
+          ) : (
+            <div className="w-full min-h-[200px] h-full">
+              <div className="w-full h-full text-sm font-semibold bg-white/90 text-gray-900 dark:bg-black/70 dark:text-gray-100 p-4 select-text">
+                <div>
+                  {consentGiven === undefined && (
+                    <p>
+                      This lofi radio stream is powered by YouTube. By selecting
+                      &quot;I consent&quot;, you agree to load the stream.
+                      Please note that YouTube may set cookies and collect usage
+                      data as part of this service.
+                    </p>
+                  )}
+                  {consentGiven === false && (
+                    <p>
+                      You chose not to consent to loading the YouTube-powered
+                      lofi radio stream. No external content will be loaded.
+                    </p>
+                  )}
+
+                  <div className="w-full text-right mt-2">
+                    <Link
+                      href="/privacy"
+                      className="text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white "
+                      onClick={closeSidebar}
+                    >
+                      Read more
+                    </Link>
+                  </div>
+
+                  <div className="w-full absolute bottom-0 left-0 right-0 pb-5 border-t border-gray-300/30 backdrop-blur-sm z-50 ">
+                    <div className="flex flex-row items-center justify-center gap-4">
+                      {consentGiven === false ? (
+                        <button
+                          type="button"
+                          onClick={() => setConsentGiven(undefined)}
+                          aria-label="Change Settings"
+                          title="Change Settings"
+                          className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
+                        >
+                          Change Settings
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() => handleConsent(true)}
+                            aria-label="Give consent"
+                            title="Give consent"
+                            className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
+                          >
+                            I consent
+                          </button>
+                          <span className="text-gray-900 dark:text-gray-300">
+                            |
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => handleConsent(false)}
+                            aria-label="Do not consent"
+                            title="Do not consent"
+                            className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
+                          >
+                            I do not consent
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Disabled Message - Shows when consent is false */}
+              </div>
+            </div>
           )}
         </div>
 
+        {/* Player controls */}
+
+        {/* Mute / Unmute */}
         {isMounted &&
+          consentGiven &&
           (isMuted ? (
             <motion.button
               type="button"
               onClick={handleUnmute}
               aria-label="Unmute"
+              title="Unmute"
               className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring transition cursor-pointer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
             >
               <Volume2 className="w-5 h-5" />
             </motion.button>
@@ -169,52 +288,66 @@ export default function LofiRadio({
               type="button"
               onClick={handleMute}
               aria-label="Mute"
+              title="Mute"
               className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring transition cursor-pointer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
             >
               <VolumeX className="w-5 h-5" />
             </motion.button>
           ))}
 
-        {isMounted && (
-          <div className="absolute bottom-1 left-1 right-1 flex items-center justify-between px-4 py-2 bg-black/50 rounded-md backdrop-blur-sm">
-            <motion.button
+        {/* Controls */}
+        {isMounted && consentGiven && (
+          <motion.div
+            className="absolute bottom-1 left-1 right-1 flex items-center justify-between px-4 py-2 bg-black/50 rounded-md backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <button
               type="button"
               onClick={() => handleSkip("prev")}
               aria-label="Previous Stream"
+              title="Previous Stream"
               className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             >
               <SkipBack className="w-5 h-5" />
-            </motion.button>
+            </button>
 
             {isPlaying ? (
-              <motion.button
+              <button
                 type="button"
                 onClick={handlePause}
                 aria-label="Pause"
+                title="Pause"
                 className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               >
                 <Pause className="w-5 h-5" />
-              </motion.button>
+              </button>
             ) : (
-              <motion.button
+              <button
                 type="button"
                 onClick={handlePlay}
                 aria-label="Play"
+                title="Play"
                 className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               >
                 <Play className="w-5 h-5" />
-              </motion.button>
+              </button>
             )}
 
-            <motion.button
+            <button
               type="button"
               onClick={() => handleSkip("next")}
               aria-label="Next Stream"
+              title="Next Stream"
               className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             >
               <SkipForward className="w-5 h-5" />
-            </motion.button>
-          </div>
+            </button>
+          </motion.div>
         )}
       </div>
     </div>

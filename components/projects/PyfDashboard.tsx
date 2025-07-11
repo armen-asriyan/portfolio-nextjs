@@ -48,7 +48,7 @@ export default function PyfDashboard() {
       {/* Image section with group-hover scaling */}
       <div className="overflow-hidden rounded-2xl">
         <Image
-          src="/img/projects/project-pyfDashboard.png"
+          src="/media/projects/project-pyfDashboard.png"
           alt="Screenshot of the Dashboard application"
           width={300}
           height={200}

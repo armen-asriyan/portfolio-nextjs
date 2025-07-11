@@ -38,7 +38,7 @@ export default function PyfSite() {
         {/* Image */}
         <div className="overflow-hidden rounded-2xl">
           <Image
-            src="/img/projects/project-pyfShowcaseSite.png"
+            src="/media/projects/project-pyfShowcaseSite.png"
             alt="Screenshot of the company website"
             width={300}
             height={200}

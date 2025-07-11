@@ -24,7 +24,7 @@ export default function Footer({
               onClick={() => handleClick("home")}
             >
               <Image
-                src="/img/logo/logo-light.avif"
+                src="/media/logo/logo-light.avif"
                 alt="Logo"
                 width={64}
                 height={64}
@@ -108,7 +108,7 @@ export default function Footer({
 
       {/* Legal */}
       <div className="w-full flex flex-col md:flex-row items-center justify-center gap-2.5 border-t border-gray-300/30 pt-5 px-8 md:px-16">
-        <p className="w-full text-sm text-gray-900 dark:text-white leading-6 text-center md:text-left">
+        <p className="w-full text-sm text-gray-700 dark:text-gray-300/80 leading-6 text-center md:text-left">
           &copy; {new Date().getFullYear()} Armen Asriyan. All rights reserved.
         </p>
         <div className="w-full flex items-center justify-center flex-1/2">

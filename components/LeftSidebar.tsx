@@ -19,7 +19,7 @@ export default function LeftSidebar({
   onClose: () => void;
   isMobile: boolean;
 }) {
-  const [isRadioMuted, setIsRadioMuted] = useState(true);
+  const [isRadioMuted, setIsRadioMuted] = useState(false);
   const purrAudioRef = useRef<HTMLAudioElement>(null);
   const meowAudioRef = useRef<HTMLAudioElement>(null);
 
@@ -86,7 +86,11 @@ export default function LeftSidebar({
             },
           }}
         >
-          <LofiRadio isMuted={isRadioMuted} setIsMuted={setIsRadioMuted} />
+          <LofiRadio
+            isMuted={isRadioMuted}
+            setIsMuted={setIsRadioMuted}
+            closeSidebar={onClose}
+          />
         </motion.div>
         {/* Cat and its thoughts */}
         <motion.div
@@ -107,7 +111,7 @@ export default function LeftSidebar({
         >
           <div className="absolute top-[-20px] right-[-10px] w-[100px] h-[43px]">
             <Image
-              src="/img/cat-eeping.gif"
+              src="/media/cat-eeping.gif"
               alt="Lofi gif"
               fill
               priority

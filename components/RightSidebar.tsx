@@ -2,7 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import { House, Lightbulb, Mail, ToolCase, X } from "lucide-react";
+import {
+  House,
+  Lightbulb,
+  Mail,
+  //  ToolCase,
+  X,
+} from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 
@@ -13,18 +19,20 @@ export default function RightSidebar({
   onClose,
   activeSection,
   setActiveSection,
+  setIsLocked,
   isMobile,
 }: {
   open: boolean;
   onClose: () => void;
   activeSection: string | null;
   setActiveSection: (section: string | null) => void;
-
+  setIsLocked: (clicked: boolean) => void;
   isMobile: boolean;
 }) {
   const isMounted = useIsMounted();
 
   const handleClick = (section: string) => {
+    setIsLocked(true);
     setActiveSection(section);
     if (isMobile) onClose();
   };
@@ -49,6 +57,7 @@ export default function RightSidebar({
         {/* Control react-icons size with Tailwind */}
         {isMounted ? <X className="size-11" /> : <div className="w-11 h-11" />}
       </Button>
+
       {/* Nav buttons */}
       <motion.div
         className="flex flex-col items-start justify-start gap-4"
@@ -64,10 +73,11 @@ export default function RightSidebar({
           },
         }}
       >
+        {/* Home */}
         <Link href="/#home" className="w-full">
           <motion.div
             className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  ${
-              activeSection === "home"
+              activeSection === "home" || activeSection === "skills"
                 ? "bg-primary text-primary-foreground"
                 : "text-gray-900 dark:text-gray-300"
             } hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer`}
@@ -95,14 +105,15 @@ export default function RightSidebar({
           </motion.div>
         </Link>
 
-        <Link href="/#skills" className="w-full">
+        {/* Skills */}
+        {/* <Link href="/#skills" className="w-full">
           <motion.div
             className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
               activeSection === "skills"
                 ? "bg-primary text-primary-foreground"
                 : "text-gray-900 dark:text-gray-300"
             }`}
-            onClick={() => handleClick("projects")}
+            onClick={() => handleClick("skills")}
             variants={{
               hidden: { opacity: 0, x: 200 },
               visible: {
@@ -124,8 +135,9 @@ export default function RightSidebar({
             )}
             Skills
           </motion.div>
-        </Link>
+        </Link> */}
 
+        {/* Projects */}
         <Link href="/#projects" className="w-full">
           <motion.div
             className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
@@ -157,6 +169,7 @@ export default function RightSidebar({
           </motion.div>
         </Link>
 
+        {/* Contact */}
         <Link href="/#contact" className="w-full">
           <motion.div
             className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-primary hover:text-primary-foreground dark:hover:text-gray-900 px-3 w-full h-12 cursor-pointer ${
@@ -188,6 +201,8 @@ export default function RightSidebar({
           </motion.div>
         </Link>
       </motion.div>
+
+      {/* Theme Switcher */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={open ? { opacity: 1 } : { opacity: 0 }}
