@@ -35,10 +35,11 @@ export default function Legal() {
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-2">Contact Information</h2>
           <p>
-            <strong>Name:</strong> Armen Asriyan
+            <strong>Name:</strong> <span translate="no">Armen Asriyan</span>
           </p>
           <p>
-            <strong>Email:</strong> hi@armenasriyan.dev
+            <strong>Email:</strong>{" "}
+            <span translate="no">hi@armenasriyan.dev</span>
           </p>
           <strong className="text-sm">
             Complete contact details available upon written request to the above

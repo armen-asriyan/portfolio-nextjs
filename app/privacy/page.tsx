@@ -43,9 +43,11 @@ export default function Privacy() {
             Data Controller
           </h2>
           <p>
-            <strong>Data Controller:</strong> Armen Asriyan
+            <strong>Data Controller:</strong>{" "}
+            <span translate="no">Armen Asriyan</span>
             <br />
-            <strong>Email:</strong> hi@armenasriyan.dev
+            <strong>Email: </strong>
+            <span translate="no">hi@armenasriyan.dev</span>
           </p>
         </div>
 
@@ -300,7 +302,8 @@ export default function Privacy() {
             is handled, please contact me at:
           </p>
           <p className="my-4">
-            <strong>Email:</strong> hi@armenasriyan.dev
+            <strong>Email:</strong>{" "}
+            <span translate="no">hi@armenasriyan.dev</span>
           </p>
           <p>
             You also have the right to lodge a complaint with the French data

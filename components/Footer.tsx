@@ -78,6 +78,7 @@ export default function Footer({
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
+                translate="no"
               >
                 LinkedIn
                 <MoveUpRight className="inline-block" />
@@ -88,6 +89,7 @@ export default function Footer({
                 href="mailto:hi@armenasriyan.dev"
                 rel="noopener noreferrer"
                 className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
+                translate="no"
               >
                 hi@armenasriyan.dev
                 <MoveUpRight className="inline-block" />
@@ -97,6 +99,7 @@ export default function Footer({
                 className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
                 target="_blank"
                 rel="noopener noreferrer"
+                translate="yes"
               >
                 Download CV / Resume (PDF)
                 <MoveUpRight className="inline-block" />

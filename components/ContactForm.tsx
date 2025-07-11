@@ -106,6 +106,7 @@ export function ContactForm() {
                     type="text"
                     autoComplete="name"
                     placeholder="e.g. John Doe"
+                    translate="no"
                     className="h-12"
                     disabled={form.formState.isSubmitting || success}
                     aria-invalid={!!fieldState.error} // Turn to boolean
@@ -131,6 +132,7 @@ export function ContactForm() {
                   type="email"
                   autoComplete="email"
                   placeholder="e.g. john.doe@example.com"
+                  translate="no"
                   className="h-12"
                   disabled={form.formState.isSubmitting || success}
                   aria-invalid={!!fieldState.error}

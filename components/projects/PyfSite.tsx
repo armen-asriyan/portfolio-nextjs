@@ -17,7 +17,9 @@ export default function PyfSite() {
             <h3 className="text-2xl font-semibold leading-8">
               Showcase Website
             </h3>
-            <p className="text-base font-medium leading-8">Print Your Feet —</p>
+            <p className="text-base font-medium leading-8" translate="no">
+              Print Your Feet —
+            </p>
             <p className="text-sm font-normal">
               Website presenting company solutions
             </p>
@@ -30,7 +32,10 @@ export default function PyfSite() {
 
         {/* Technologies */}
         <div className="flex flex-wrap w-full gap-2 my-2 text-sm font-semibold px-2.5">
-          <span className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800">
+          <span
+            className="rounded-md px-3 py-1 text-gray-900 dark:text-gray-300 bg-gray-100/70 dark:bg-gray-800"
+            translate="no"
+          >
             WordPress
           </span>
         </div>

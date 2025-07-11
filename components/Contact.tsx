@@ -34,7 +34,8 @@ export function Contact() {
               href="https://github.com/armen-asriyan"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
+              className="contact-link"
+              translate="no"
             >
               GitHub
             </a>
@@ -44,7 +45,8 @@ export function Contact() {
               href="https://linkedin.com/in/armen-asriyan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
+              className="contact-link"
+              translate="no"
             >
               LinkedIn
             </a>
@@ -53,7 +55,8 @@ export function Contact() {
             <a
               href="mailto:hi@armenasriyan.dev"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
+              className="contact-link"
+              translate="no"
             >
               hi@armenasriyan.dev
             </a>
