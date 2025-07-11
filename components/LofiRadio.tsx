@@ -209,7 +209,7 @@ export default function LofiRadio({
 
                   <div className="w-full text-right mt-2">
                     <Link
-                      href="/privacy"
+                      href="/privacy#tps-youtube"
                       className="text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white "
                       onClick={closeSidebar}
                     >
