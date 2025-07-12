@@ -1,10 +1,13 @@
 "use client";
+import { useTranslations } from "next-intl";
 // import { Mail } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
 import { motion } from "motion/react";
 
 export function Contact() {
+  const t = useTranslations("contact");
+
   return (
     <motion.section
       className="h-fit w-full flex flex-col items-start justify-start px-3 md:px-16 py-2.5 mb-20 scroll-mt-25"
@@ -15,18 +18,16 @@ export function Contact() {
       id="contact"
     >
       <h2 className="text-5xl bg-gradient-to-r from-rose-600 to-yellow-700 inline-block text-transparent bg-clip-text drop-shadow-[0_0_5px_#ff4573] mb-10 px-6 lg:px-0">
-        Contact
+        {t("title")}
       </h2>
 
       <div className="flex flex-col w-full gap-6 border border-gray-300/70 dark:border-gray-300/30 p-6 rounded-2xl bg-background">
         <div className="flex flex-col gap-4 border-b border-gray-300/30 pb-4">
           <p className="text-xl text-purple-900 drop-shadow-[0_0_5px_#a855f7] dark:text-gray-300 dark:drop-shadow-[0_0_5px_#ff4573] leading-8">
-            Got an idea? A question? Or maybe just a really good cat gif to
-            share?
+            {t("message1")}
             <br />
             <br />
-            Hit me up through the form or use any of the links below. I’m always
-            happy to connect and collaborate.
+            {t("message2")}
           </p>
           <div className="flex flex-col gap-2 mb-4">
             {/* GitHub */}
@@ -34,7 +35,7 @@ export function Contact() {
               href="https://github.com/armen-asriyan"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-link"
+              className="text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
               translate="no"
             >
               GitHub
@@ -45,7 +46,7 @@ export function Contact() {
               href="https://linkedin.com/in/armen-asriyan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-link"
+              className="text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
               translate="no"
             >
               LinkedIn
@@ -55,7 +56,7 @@ export function Contact() {
             <a
               href="mailto:hi@armenasriyan.dev"
               rel="noopener noreferrer"
-              className="contact-link"
+              className="text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white"
               translate="no"
             >
               hi@armenasriyan.dev

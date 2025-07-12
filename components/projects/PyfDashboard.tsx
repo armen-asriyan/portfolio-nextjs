@@ -1,9 +1,12 @@
 "use client";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 // import Link from "next/link";
 // import { MoveRight } from "lucide-react";
 
 export default function PyfDashboard() {
+  const t = useTranslations("projects.project1");
+
   return (
     // <Link
     //   href="https://printyourfeet.com"
@@ -15,13 +18,11 @@ export default function PyfDashboard() {
       <div className="flex justify-between items-center px-2.5 mb-2">
         {/* Project text section */}
         <div className="flex flex-col gap-1 text-neutral-100 dark:text-gray-300 drop-shadow-[0_0_3px_rgba(255,255,255,0.4)] dark:drop-shadow-[0_0_5px_#EFBF04] leading-8">
-          <h3 className="text-2xl font-semibold leading-8">Dashboard</h3>
+          <h3 className="text-2xl font-semibold leading-8">{t("title")}</h3>
           <p className="text-base font-medium leading-8" translate="no">
             Print Your Feet —
           </p>
-          <p className="text-sm font-normal">
-            Data management and visualisation interface
-          </p>
+          <p className="text-sm font-normal">{t("description")}</p>
           <small className="text-sm font-semibold dark:font-normal leading-8 text-gray-900 dark:text-yellow-400">
             2025
           </small>

@@ -2,8 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function PyfSite() {
+  const t = useTranslations("projects.project2");
+
   return (
     <Link
       href="https://printyourfeet.com"
@@ -14,15 +17,11 @@ export default function PyfSite() {
         {/* Project top section */}
         <div className="flex justify-between items-center px-2.5 mb-2">
           <div className="flex flex-col gap-1 text-gray-900 drop-shadow-[0_0_3px_#d1d5db] dark:text-gray-300 dark:drop-shadow-[0_0_5px_#EFBF04] leading-8">
-            <h3 className="text-2xl font-semibold leading-8">
-              Showcase Website
-            </h3>
+            <h3 className="text-2xl font-semibold leading-8">{t("title")}</h3>
             <p className="text-base font-medium leading-8" translate="no">
               Print Your Feet —
             </p>
-            <p className="text-sm font-normal">
-              Website presenting company solutions
-            </p>
+            <p className="text-sm font-normal">{t("description")}</p>
             <small className="text-sm font-semibold dark:font-normal leading-8 text-gray-900 dark:text-yellow-400">
               2025
             </small>

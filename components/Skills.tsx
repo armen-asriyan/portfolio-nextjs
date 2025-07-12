@@ -1,5 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import useIsMounted from "@/hooks/useIsMounted";
+import SkillIcon from "@/components/SkillIcon";
+import ScrollIndicator from "./animations/ScrollIndicator";
+import { motion } from "motion/react";
+
 import {
   SiJavascript,
   SiReact,
@@ -19,13 +25,7 @@ import {
   SiTypescript,
   SiGithub,
 } from "@icons-pack/react-simple-icons";
-import SkillIcon from "@/components/SkillIcon";
-
-import { motion } from "motion/react";
-
-import useIsMounted from "@/hooks/useIsMounted";
-import { useState } from "react";
-import ScrollIndicator from "./animations/ScrollIndicator";
+import { useTranslations } from "next-intl";
 
 type Skill = {
   icon: React.ComponentType<{ className?: string }>;
@@ -54,6 +54,8 @@ const skills: Skill[] = [
 ] as const;
 
 export default function Skills() {
+  const t = useTranslations("skills");
+
   const isMounted = useIsMounted();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -71,7 +73,7 @@ export default function Skills() {
         onAnimationStart={() => setIsVisible(true)}
       >
         <h2 className="text-5xl bg-gradient-to-r from-pink-700 via-purple-600 to-indigo-600 dark:from-fuchsia-500  dark:via-purple-500 dark:to-indigo-500 inline-block text-transparent bg-clip-text drop-shadow-[0_0_5px_#ff4573] pb-2 mb-8">
-          Skills
+          {t("title")}
         </h2>
 
         <motion.div

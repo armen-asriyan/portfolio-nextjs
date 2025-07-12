@@ -13,6 +13,8 @@ import { motion } from "motion/react";
 import Link from "next/link";
 
 import useIsMounted from "@/hooks/useIsMounted";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
+import { useTranslations } from "next-intl";
 
 export default function RightSidebar({
   open,
@@ -29,6 +31,9 @@ export default function RightSidebar({
   setIsLocked: (clicked: boolean) => void;
   isMobile: boolean;
 }) {
+  const t = useTranslations("rightSideBar");
+  const tNav = useTranslations("nav");
+
   const isMounted = useIsMounted();
 
   const handleClick = (section: string) => {
@@ -42,17 +47,17 @@ export default function RightSidebar({
       className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
         open ? "translate-x-0 visible" : "translate-x-full invisible "
       } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden`}
-      aria-hidden={!open}
+      inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
-      aria-label="Navigation panel"
+      aria-label={t("ariaLabels.sectionTitle")}
     >
       <Button
         variant="ghost"
         size="icon"
         className="absolute top-4 right-4 inline-flex lg:hidden items-center justify-center cursor-pointer"
         onClick={onClose}
-        aria-hidden="true"
         tabIndex={-1}
+        aria-label={t("ariaLabels.closeSidebar")}
       >
         {/* Control react-icons size with Tailwind */}
         {isMounted ? <X className="size-11" /> : <div className="w-11 h-11" />}
@@ -74,7 +79,7 @@ export default function RightSidebar({
         }}
       >
         {/* Home */}
-        <Link href="/#home" className="w-full">
+        <Link href="/#top" className="w-full">
           <motion.div
             className={`inline-flex items-center justify-start whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  ${
               activeSection === "home" || activeSection === "skills"
@@ -101,7 +106,7 @@ export default function RightSidebar({
             ) : (
               <div className="w-11 h-11" />
             )}
-            Home
+            {tNav("home")}
           </motion.div>
         </Link>
 
@@ -165,7 +170,7 @@ export default function RightSidebar({
             ) : (
               <div className="w-11 h-11" />
             )}
-            Projects
+            {tNav("projects")}
           </motion.div>
         </Link>
 
@@ -197,7 +202,7 @@ export default function RightSidebar({
             ) : (
               <div className="w-11 h-11" />
             )}
-            Contact
+            {tNav("contact")}
           </motion.div>
         </Link>
       </motion.div>
@@ -211,7 +216,11 @@ export default function RightSidebar({
           duration: 0.5,
           ease: "easeOut",
         }}
+        className="flex items-center justify-between w-full"
       >
+        <div className="w-full ml-6">
+          <LocaleSwitcher />
+        </div>
         <ThemeSwitcher />
       </motion.div>
     </aside>

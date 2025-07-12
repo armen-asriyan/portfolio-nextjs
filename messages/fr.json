@@ -1,0 +1,274 @@
+{
+  "layout": {
+    "meta": {
+      "title": "Armen Asriyan - Développeur Full-Stack Junior",
+      "description": "Un site personnel et portfolio d'Armen Asriyan, développeur full-stack junior ayant de l'expérience avec Next.js, React, TypeScript, Node.js et diverses autres technologies."
+    }
+  },
+  "hero": {
+    "title": "Salut, je suis Armen",
+    "subtitle1": "Je suis un développeur junior qui explore le monde du développement full-stack.",
+    "subtitle2": "J'aime créer des applications claires et fonctionnelles et je m'efforce constamment d'apprendre et de m'améliorer."
+  },
+  "skills": {
+    "title": "Compétences"
+  },
+  "projects": {
+    "title": "Projets",
+    "project1": {
+      "title": "Tableau de bord",
+      "description": "Interface de gestion et visualisation de données"
+    },
+    "project2": {
+      "title": "Site web d'entreprise",
+      "description": "Site web présentant une entreprise et ses services"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "message1": "Une idée ? Une question ? Ou peut-être juste un super gif de chat à partager ?",
+    "message2": " Contactez-moi via le formulaire ou utilisez un des liens ci-dessous. Je suis toujours heureux d'échanger et de collaborer.",
+    "contact-form": {
+      "name": "Nom",
+      "messagePlaceholder": "Comment puis-je vous aider ?",
+      "honey": "Laissez ce champ vide",
+      "submitState": {
+        "idle": "Envoyer le message",
+        "loading": "Envoi en cours...",
+        "success": "Message envoyé",
+        "error": "Erreur"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Tous droits réservés."
+  },
+  "nav": {
+    "home": "Accueil",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "contact": "Contact",
+    "legalNotice": "Mentions légales",
+    "privacyPolicy": "Politique de confidentialité",
+    "scrollToTop": "Retour en haut",
+    "cv": "Télécharger le CV (PDF)"
+  },
+  "leftSideBar": {
+    "ariaLabels": {
+      "sectionTitle": "Panneau musique",
+      "closeSidebar": "Fermer la barre latérale"
+    }
+  },
+  "lofiRadio": {
+    "consent": {
+      "idle": "Ce flux radio lofi est alimenté par YouTube. En sélectionnant « J'accepte », vous acceptez de charger le flux. Veuillez noter que YouTube peut définir des cookies et collecter des données d'utilisation dans le cadre de ce service.",
+      "iConsent": "J'accepte",
+      "iDoNotConsent": "Je n'accepte pas",
+      "readMore": "En savoir plus",
+      "refused": "Vous avez choisi de ne pas consentir au chargement du flux radio lofi alimenté par YouTube. Aucun contenu externe ne sera chargé.",
+      "changeSettings": "Modifier les paramètres"
+    },
+    "player": {
+      "unmute": "Activer le son",
+      "mute": "Couper le son",
+      "play": "Lecture",
+      "pause": "Pause",
+      "nextStream": "Flux suivant",
+      "previousStream": "Flux précédent"
+    }
+  },
+  "catThoughts": {
+    "messages": {
+      "0": "As-tu poussé ce dernier commit ?\n ...",
+      "1": "Bof, c'est probablement correct.",
+      "2": "Peut-être que les bugs sont des fonctionnalités...",
+      "3-muted": "Ce rythme...\n c'est coupé ? Impoli.",
+      "3": "Ce rythme déchire.",
+      "4-muted": "J'étais dans l'ambiance, mais bon.",
+      "4": "Alerte tube certifié.",
+      "5": "Je dors, arrêtez de me juger.",
+      "6": ":3",
+      "7": "Purrr...optimisation des performances.",
+      "8-muted": "Pas de musique aujourd'hui, hein ?",
+      "8": "Tempo purrfait.",
+      "9": "Je ne sais pas ce que je fais,\n mais je le fais bien.",
+      "10": "REST ? C'est dit.",
+      "11": "=^-^=",
+      "12": "Portfolio ? Plutôt purrfolio.",
+      "13": "Cliquez sur moi"
+    }
+  },
+  "rightSideBar": {
+    "ariaLabels": {
+      "sectionTitle": "Panneau de navigation",
+      "closeSidebar": "Fermer la barre latérale"
+    }
+  },
+  "topNavbar": {
+    "ariaLabels": {
+      "openLeftSidebar": "Ouvrir le panneau musique",
+      "openRightSidebar": "Ouvrir le menu de navigation"
+    }
+  },
+  "localeSwitcher": {
+    "label": "Changer la langue"
+  },
+  "themeSwitcher": {
+    "ariaLabels": {
+      "switchToLight": "Basculer en mode clair",
+      "switchToDark": "Basculer en mode sombre"
+    }
+  },
+  "legalNotice": {
+    "meta": {
+      "title": "Mentions légales",
+      "description": "Informations légales officielles concernant le site portfolio personnel d’Armen Asriyan, y compris les coordonnées, la propriété et l’hébergement."
+    },
+    "title": "Mentions légales",
+    "siteInfo": {
+      "title": "Informations sur le site",
+      "siteNameLabel": "Nom du site",
+      "siteName": "Armen Asriyan - Développeur Full-Stack Junior",
+      "urlLabel": "URL",
+      "url": "https://armenasriyan.dev/",
+      "directorLabel": "Directeur de publication",
+      "director": "Armen Asriyan"
+    },
+    "contact": {
+      "title": "Informations de contact",
+      "nameLabel": "Nom",
+      "name": "Armen Asriyan",
+      "notice": "Coordonnées complètes disponibles sur demande écrite à l'adresse e-mail ci-dessus."
+    },
+    "hosting": {
+      "title": "Informations d'hébergement",
+      "webHostLabel": "Hébergeur web",
+      "webHost": "Vercel Inc.",
+      "addressLabel": "Adresse",
+      "address": "650 California St, San Francisco, CA 94108, USA",
+      "websiteLabel": "Site web",
+      "website": "https://vercel.com",
+      "domainProviderLabel": "Fournisseur de domaine",
+      "domainProvider": "Hostinger International Ltd."
+    },
+    "intellectual": {
+      "title": "Propriété intellectuelle",
+      "paragraph1": "Sauf indication contraire, le contenu textuel et les visuels personnalisés de ce site web sont la propriété d'Armen Asriyan. Les icônes utilisées sur ce site proviennent de bibliothèques open-source telles que <a href='https://lucide.dev' target='_blank' rel='noopener noreferrer'>Lucide</a> et <a href='https://simpleicons.org' target='_blank' rel='noopener noreferrer'>Simple Icons</a> et sont utilisées conformément à leurs licences respectives.",
+      "paragraph2": "Ce site comprend également du contenu intégré de plateformes tierces telles que <a href='https://www.youtube.com/' target='_blank' rel='noopener noreferrer'>YouTube</a> et peut présenter des images ou des sons provenant de diverses licences.",
+      "paragraph3": "Tout contenu tiers reste la propriété de ses propriétaires respectifs. Toute reproduction, modification ou utilisation non autorisée du contenu original de ce site est strictement interdite sans consentement écrit préalable."
+    },
+    "personalData": {
+      "title": "Données personnelles",
+      "description": "Pour des informations sur la façon dont nous collectons et traitons les données personnelles, veuillez consulter notre",
+      "privacyPolicy": "Politique de confidentialité"
+    },
+    "lastUpdated": "Dernière mise à jour"
+  },
+  "privacyPolicy": {
+    "meta": {
+      "title": "Politique de confidentialité",
+      "description": "Politique de confidentialité expliquant comment les données personnelles sont collectées, utilisées et protégées sur le site portfolio d'Armen Asriyan. Conforme au RGPD."
+    },
+
+    "title": "Politique de confidentialité",
+    "introduction": {
+      "title": "Introduction",
+      "paragraph1": "Cette politique de confidentialité explique comment Armen Asriyan (« je », « moi », « mon ») collecte, utilise et protège vos informations personnelles lorsque vous visitez et interagissez avec ce site web (armenasriyan.dev).",
+      "paragraph2": "Cette politique est conforme au Règlement général sur la protection des données (RGPD) et aux lois françaises sur la protection des données."
+    },
+    "dataController": {
+      "title": "Responsable du traitement",
+      "controller": "Responsable du traitement :"
+    },
+    "informationCollected": {
+      "title": "Informations que nous collectons",
+      "contactFormData": {
+        "title": "Données du formulaire de contact",
+        "description": "Lorsque vous utilisez le formulaire de contact sur ce site web, je collecte :",
+        "items": {
+          "name": "Votre nom",
+          "email": "Votre adresse e-mail",
+          "message": "Le contenu de votre message",
+          "timestamp": "La date et l'heure de votre soumission"
+        }
+      },
+      "cookiesAndLocalStorage": {
+        "title": "Cookies et stockage local",
+        "description": "Ce site web utilise un stockage de données minimal :",
+        "items": {
+          "consentPreferences": "Préférences de consentement : Votre choix concernant la fonction radio lofi YouTube est stocké localement dans votre navigateur pour mémoriser votre préférence",
+          "thirdPartyCookies": "Cookies tiers : Lorsque vous consentez à charger la radio lofi YouTube, YouTube peut définir des cookies selon sa politique de confidentialité",
+          "themePreferences": "Préférences de thème : Votre choix concernant le thème du site web est stocké localement dans votre navigateur pour mémoriser votre préférence"
+        }
+      }
+    },
+    "howWeUseInfo": {
+      "title": "Comment nous utilisons vos informations",
+      "contactFormData": {
+        "title": "Données du formulaire de contact",
+        "description": "J'utilise les informations de votre formulaire de contact uniquement pour :",
+        "items": {
+          "respond": "Répondre à vos demandes",
+          "provide": "Fournir les informations que vous avez demandées",
+          "maintain": "Maintenir un enregistrement de notre communication"
+        }
+      },
+      "legalBasis": {
+        "title": "Base légale",
+        "description": "Je traite vos données personnelles sur la base de votre consentement lorsque vous soumettez volontairement le formulaire de contact et pour mon intérêt légitime à répondre aux demandes concernant mes services."
+      }
+    },
+    "dataStorage": {
+      "title": "Stockage et conservation des données",
+      "description": "Les données de votre formulaire de contact sont stockées dans deux emplacements :",
+      "locations": {
+        "resend": "Service Resend : Les soumissions de formulaires sont stockées sur les serveurs de Resend à des fins de livraison d'e-mails",
+        "email": "Boîte e-mail : Je conserve vos messages dans ma boîte e-mail dans le cadre de la correspondance normale"
+      },
+      "retention": "Je conserve vos messages du formulaire de contact aussi longtemps que nécessaire pour répondre à votre demande et maintenir les dossiers commerciaux. Vous pouvez demander la suppression de vos données à tout moment."
+    },
+    "thirdPartyServices": {
+      "title": "Services tiers",
+      "resend": {
+        "title": "Resend",
+        "description": "J'utilise Resend pour gérer les soumissions de formulaires de contact. Resend traite les données de votre formulaire selon sa politique de confidentialité. Vous pouvez consulter la politique de confidentialité de Resend à l'adresse"
+      },
+      "youtube": {
+        "title": "YouTube",
+        "description": "Lorsque vous consentez à utiliser la fonction radio lofi, le contenu YouTube est intégré sur ce site web. YouTube peut collecter des données selon sa politique de confidentialité. Vous pouvez consulter la politique de confidentialité de YouTube à l'adresse",
+        "consentNote": "Le contenu YouTube ne se charge qu'après avoir fourni un consentement explicite, et votre choix de consentement est stocké localement dans votre navigateur."
+      }
+    },
+    "yourRights": {
+      "title": "Vos droits",
+      "description": "Sous le RGPD, vous avez les droits suivants concernant vos données personnelles :",
+      "rights": {
+        "access": "Droit d'accès : Vous pouvez demander une copie des données personnelles que je détiens sur vous",
+        "rectification": "Droit de rectification : Vous pouvez demander la correction de données personnelles inexactes",
+        "erasure": "Droit à l'effacement : Vous pouvez demander la suppression de vos données personnelles",
+        "restrict": "Droit de limiter le traitement : Vous pouvez demander que je limite la façon dont j'utilise vos données",
+        "portability": "Droit à la portabilité des données : Vous pouvez demander vos données dans un format portable",
+        "object": "Droit d'opposition : Vous pouvez vous opposer au traitement de vos données personnelles",
+        "withdraw": "Droit de retirer le consentement : Vous pouvez retirer votre consentement à tout moment"
+      },
+      "exerciseRights": "Pour exercer l'un de ces droits, n'hésitez pas à me contacter"
+    },
+    "dataSecurity": {
+      "title": "Sécurité des données",
+      "description": "Je mets en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre l'accès non autorisé, l'altération, la divulgation ou la destruction. Cependant, aucune méthode de transmission sur Internet n'est sûre à 100%."
+    },
+    "changesToPolicy": {
+      "title": "Modifications de cette politique",
+      "description": "Je peux mettre à jour cette politique de confidentialité de temps en temps. Toute modification sera publiée sur cette page avec une date de révision mise à jour. Je vous encourage à consulter cette politique périodiquement."
+    },
+    "contactInfo": {
+      "title": "Informations de contact",
+      "description": "Si vous avez des questions concernant cette politique de confidentialité ou la façon dont vos données sont traitées, veuillez me contacter à :",
+      "complaint": "Vous avez également le droit de déposer une plainte auprès de l'autorité française de protection des données (CNIL) si vous pensez que vos droits de protection des données ont été violés."
+    },
+    "lastUpdated": "Dernière mise à jour"
+  },
+  "generalMessages": {
+    "unsupportedAudio": "Votre navigateur ne prend pas en charge l'élément audio."
+  }
+}

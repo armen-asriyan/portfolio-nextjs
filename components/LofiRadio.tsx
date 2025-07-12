@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import useIsMounted from "@/hooks/useIsMounted";
+import { useTranslations } from "next-intl";
 
 const streamIds = [
   "jfKfPfyJRdk", // lofi hip hop radio 📚 beats to relax/study to
@@ -35,6 +36,7 @@ export default function LofiRadio({
   setIsMuted: (isMuted: boolean) => void;
   closeSidebar: () => void;
 }) {
+  const t = useTranslations("lofiRadio");
   const isMounted = useIsMounted();
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -192,20 +194,8 @@ export default function LofiRadio({
             <div className="w-full min-h-[200px] h-full">
               <div className="w-full h-full text-sm font-semibold bg-white/90 text-gray-900 dark:bg-black/70 dark:text-gray-100 p-4 select-text">
                 <div>
-                  {consentGiven === undefined && (
-                    <p>
-                      This lofi radio stream is powered by YouTube. By selecting
-                      &quot;I consent&quot;, you agree to load the stream.
-                      Please note that YouTube may set cookies and collect usage
-                      data as part of this service.
-                    </p>
-                  )}
-                  {consentGiven === false && (
-                    <p>
-                      You chose not to consent to loading the YouTube-powered
-                      lofi radio stream. No external content will be loaded.
-                    </p>
-                  )}
+                  {consentGiven === undefined && <p>{t("consent.idle")}</p>}
+                  {consentGiven === false && <p>{t("consent.refused")}</p>}
 
                   <div className="w-full text-right mt-2">
                     <Link
@@ -213,7 +203,7 @@ export default function LofiRadio({
                       className="text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white "
                       onClick={closeSidebar}
                     >
-                      Read more
+                      {t("consent.readMore")}
                     </Link>
                   </div>
 
@@ -223,22 +213,19 @@ export default function LofiRadio({
                         <button
                           type="button"
                           onClick={() => setConsentGiven(undefined)}
-                          aria-label="Change Settings"
-                          title="Change Settings"
                           className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
                         >
-                          Change Settings
+                          {t("consent.changeSettings")}
                         </button>
                       ) : (
                         <>
                           <button
                             type="button"
                             onClick={() => handleConsent(true)}
-                            aria-label="Give consent"
-                            title="Give consent"
+                            title={t("consent.iConsent")}
                             className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
                           >
-                            I consent
+                            {t("consent.iConsent")}
                           </button>
                           <span className="text-gray-900 dark:text-gray-300">
                             |
@@ -247,11 +234,9 @@ export default function LofiRadio({
                           <button
                             type="button"
                             onClick={() => handleConsent(false)}
-                            aria-label="Do not consent"
-                            title="Do not consent"
                             className="text-gray-900 dark:text-gray-300 transition-colors duration-300 hover:text-gray-600 dark:hover:text-white cursor-pointer"
                           >
-                            I do not consent
+                            {t("consent.iDoNotConsent")}
                           </button>
                         </>
                       )}
@@ -274,8 +259,8 @@ export default function LofiRadio({
             <motion.button
               type="button"
               onClick={handleUnmute}
-              aria-label="Unmute"
-              title="Unmute"
+              aria-label={t("player.unmute")}
+              title={t("player.unmute")}
               className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring transition cursor-pointer"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -287,8 +272,8 @@ export default function LofiRadio({
             <motion.button
               type="button"
               onClick={handleMute}
-              aria-label="Mute"
-              title="Mute"
+              aria-label={t("player.mute")}
+              title={t("player.mute")}
               className="absolute bottom-14 left-2 bg-black/60 text-gray-100 p-2 rounded-full shadow-md hover:bg-black/80 hover:scale-105 focus:outline-none focus:ring transition cursor-pointer"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -309,8 +294,8 @@ export default function LofiRadio({
             <button
               type="button"
               onClick={() => handleSkip("prev")}
-              aria-label="Previous Stream"
-              title="Previous Stream"
+              aria-label={t("player.previousStream")}
+              title={t("player.previousStream")}
               className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             >
               <SkipBack className="w-5 h-5" />
@@ -320,8 +305,8 @@ export default function LofiRadio({
               <button
                 type="button"
                 onClick={handlePause}
-                aria-label="Pause"
-                title="Pause"
+                aria-label={t("player.pause")}
+                title={t("player.pause")}
                 className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               >
                 <Pause className="w-5 h-5" />
@@ -330,8 +315,8 @@ export default function LofiRadio({
               <button
                 type="button"
                 onClick={handlePlay}
-                aria-label="Play"
-                title="Play"
+                aria-label={t("player.play")}
+                title={t("player.play")}
                 className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
               >
                 <Play className="w-5 h-5" />
@@ -341,8 +326,8 @@ export default function LofiRadio({
             <button
               type="button"
               onClick={() => handleSkip("next")}
-              aria-label="Next Stream"
-              title="Next Stream"
+              aria-label={t("player.nextStream")}
+              title={t("player.nextStream")}
               className="text-gray-300 p-2 rounded-full hover:ring focus:outline-none focus:ring transition drop-shadow-[0_0_5px_#c084fc] dark:drop-shadow-[0_0_5px_#d1d5db] cursor-pointer"
             >
               <SkipForward className="w-5 h-5" />

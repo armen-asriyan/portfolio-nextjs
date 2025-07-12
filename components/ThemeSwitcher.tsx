@@ -4,19 +4,32 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export function ThemeSwitcher() {
+  const t = useTranslations("themeSwitcher");
+
   const isMounted = useIsMounted();
   const { setTheme, resolvedTheme } = useTheme();
 
   return (
-    <div className="inline-flex items-center justify-end w-full text-gray-900 dark:text-gray-300">
+    <div className="inline-flex items-center justify-end w-fit text-gray-900 dark:text-gray-300">
       <Button
         variant="ghost"
         size="icon"
         onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         className="inline-flex items-center justify-center cursor-pointer"
-        aria-label="Toggle dark mode"
+        aria-label={
+          resolvedTheme === "dark"
+            ? t("ariaLabels.switchToLight")
+            : t("ariaLabels.switchToDark")
+        }
+        title={
+          resolvedTheme === "dark"
+            ? t("ariaLabels.switchToLight")
+            : t("ariaLabels.switchToDark")
+        }
+        suppressHydrationWarning
       >
         {resolvedTheme === "dark" ? (
           isMounted ? (

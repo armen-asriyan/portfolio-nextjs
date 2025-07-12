@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function CatThoughts({
@@ -7,6 +8,25 @@ export default function CatThoughts({
 }: {
   isRadioMuted: boolean;
 }) {
+  const t = useTranslations("catThoughts.messages");
+
+  const words = [
+    t("0"),
+    t("1"),
+    t("2"),
+    t(isRadioMuted ? "3-muted" : "3"),
+    t(isRadioMuted ? "4-muted" : "4"),
+    t("5"),
+    t("6"),
+    t("7"),
+    t(isRadioMuted ? "8-muted" : "8"),
+    t("9"),
+    t("10"),
+    t("11"),
+    t("12"),
+    t("13"),
+  ];
+
   return (
     /**
      * Note: break-words is required for the text to wrap
@@ -17,24 +37,7 @@ export default function CatThoughts({
       style={{ fontFamily: "var(--font-vt323)" }}
     >
       <Typewriter
-        words={[
-          "Did you push that last commit?\n ...",
-          "Meh, It's probably fine.",
-          "Maybe the bugs are features...",
-          isRadioMuted
-            ? "This beat...\n it's muted? Rude."
-            : "This beat slaps.",
-          isRadioMuted ? "I was vibing, but ok." : "Certified banger alert.",
-          "I'm eeping, stop judging me.",
-          ":3",
-          "Purrr...formance optimization.",
-          isRadioMuted ? "No jams today, huh?" : "Purrrfect tempo.",
-          "I don't know what I'm doing,\n but I'm doing it well.",
-          "REST? Say less.",
-          "=^-^=",
-          "Portfolio? More like purrfolio.",
-          "Click me",
-        ]}
+        words={words}
         loop={0} // Infinite
         cursor
         cursorStyle=""

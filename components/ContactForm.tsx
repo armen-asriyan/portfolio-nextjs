@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Check, Loader2Icon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -32,6 +33,8 @@ const formSchema = z.object({
 });
 
 export function ContactForm() {
+  const t = useTranslations("contact.contact-form");
+
   const [submitError, setSubmitError] = useState<{
     type: "rate_limit" | "server_error" | null;
     message: string;
@@ -100,7 +103,7 @@ export function ContactForm() {
           render={({ field, fieldState }) => (
             <>
               <FormItem>
-                <FormLabel className="mb-1.5">Name</FormLabel>
+                <FormLabel className="mb-1.5">{t("name")}</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
@@ -154,7 +157,7 @@ export function ContactForm() {
               <FormLabel className="mb-1.5">Message</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="How can I help you?"
+                  placeholder={t("messagePlaceholder")}
                   className="resize-y h-35"
                   rows={4}
                   disabled={form.formState.isSubmitting || success}
@@ -174,7 +177,7 @@ export function ContactForm() {
           name="_honey"
           tabIndex={-1}
           aria-hidden="true"
-          aria-label="Do not fill this out"
+          aria-label={t("honey")}
           className="hidden"
         />
         {submitError && (
@@ -195,16 +198,16 @@ export function ContactForm() {
         >
           {form.formState.isSubmitting ? (
             <>
-              <span>Sending...</span>
+              <span>{t("submitState.loading")}</span>
               <Loader2Icon className="ml-2 h-4 w-4 animate-spin" />
             </>
           ) : success ? (
             <>
-              <span>Message Sent</span>
+              <span>{t("submitState.success")}</span>
               <Check className="ml-2 h-4 w-4" />
             </>
           ) : (
-            "Send Message"
+            t("submitState.idle")
           )}
         </Button>
       </form>

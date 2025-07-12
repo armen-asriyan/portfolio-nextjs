@@ -9,6 +9,7 @@ import Image from "next/image";
 import CatThoughts from "./CatThoughts";
 import LofiRadio from "./LofiRadio";
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function LeftSidebar({
   open,
@@ -19,6 +20,10 @@ export default function LeftSidebar({
   onClose: () => void;
   isMobile: boolean;
 }) {
+  const t = useTranslations("leftSideBar");
+  const tGeneral = useTranslations("generalMessages");
+  const tNav = useTranslations("nav");
+
   const [isRadioMuted, setIsRadioMuted] = useState(false);
   const purrAudioRef = useRef<HTMLAudioElement>(null);
   const meowAudioRef = useRef<HTMLAudioElement>(null);
@@ -40,17 +45,17 @@ export default function LeftSidebar({
       className={`fixed top-0 left-0 flex flex-col items-center justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-14 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
         open ? "translate-x-0 visible" : "-translate-x-full invisible "
       } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden`}
-      aria-hidden={!open}
+      inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
-      aria-label="Music panel"
+      aria-label={t("ariaLabels.sectionTitle")}
     >
       <Button
         variant="ghost"
         size="icon"
         className="absolute top-4 left-4 inline-flex lg:hidden items-center justify-center cursor-pointer"
         onClick={onClose}
-        aria-hidden="true"
         tabIndex={-1}
+        aria-label={t("ariaLabels.closeSidebar")}
       >
         <X className="size-11" />
       </Button>
@@ -124,12 +129,12 @@ export default function LeftSidebar({
 
             <audio ref={purrAudioRef} loop>
               <source src="/audio/purr.flac" type="audio/flac" />
-              Your browser does not support the audio element.
+              {tGeneral("unsupportedAudio")}
             </audio>
 
             <audio ref={meowAudioRef}>
               <source src="/audio/meow.flac" type="audio/flac" />
-              Your browser does not support the audio element.
+              {tGeneral("unsupportedAudio")}
             </audio>
           </div>
           <CatThoughts isRadioMuted={isRadioMuted} />
@@ -153,7 +158,7 @@ export default function LeftSidebar({
           aria-label="Download CV / Resume"
           className="text-sm text-gray-300 hover:text-gray-100 md:text-base md:w-fit bg-gradient-to-t from-purple-800 to-violet-900 w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800"
         >
-          Download CV / Resume (PDF)
+          {tNav("cv")}
           <Download className="inline-block" />
         </a>
       </motion.div>

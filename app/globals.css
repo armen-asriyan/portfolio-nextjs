@@ -121,7 +121,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-@utility contact-link {
-  @apply text-base text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white;
-}
