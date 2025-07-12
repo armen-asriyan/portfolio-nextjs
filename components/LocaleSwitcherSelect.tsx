@@ -46,7 +46,8 @@ export default function LocaleSwitcherSelect({
           { pathname, params },
           { locale: nextLocale as Locale }
         );
-      } catch (error) {
+      } catch (error: unknown) {
+        console.error("Error in onValueChange:", error);
         // Fallback to window.location if router.replace fails
         const currentPath = window.location.pathname;
         const newPath = currentPath.replace(
