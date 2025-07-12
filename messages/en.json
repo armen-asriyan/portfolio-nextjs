@@ -51,7 +51,8 @@
     "legalNotice": "Legal Notice",
     "privacyPolicy": "Privacy Policy",
     "scrollToTop": "Scroll to top",
-    "cv": "Download CV / Resume (PDF)"
+    "cv": "Download CV / Resume (PDF)",
+    "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_en.pdf"
   },
   "leftSideBar": {
     "ariaLabels": {

@@ -152,7 +152,7 @@ export default function LeftSidebar({
         }}
       >
         <a
-          href="/cv/Armen_Asriyan_CV.pdf"
+          href={`/cv/${tNav("cvLink")}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Download CV / Resume"

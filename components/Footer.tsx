@@ -1,5 +1,6 @@
 "use client";
-import Link from "next/link";
+
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { MoveUp, MoveUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -99,7 +100,7 @@ export default function Footer({
                 <MoveUpRight className="inline-block" />
               </a>
               <a
-                href="/cv/Armen_Asriyan_CV.pdf"
+                href={`/cv/${tNav("cvLink")}`}
                 className="text-sm text-gray-900 dark:text-gray-100 underline transition-colors duration-300 hover:text-gray-400 dark:hover:text-gray-300"
                 target="_blank"
                 rel="noopener noreferrer"

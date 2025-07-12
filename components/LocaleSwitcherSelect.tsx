@@ -3,7 +3,7 @@
 import { Globe } from "lucide-react";
 import { useParams } from "next/navigation";
 import type { Locale } from "next-intl";
-import { type ReactNode, useTransition } from "react";
+import { type ReactNode, useTransition, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import {
   Select,
@@ -28,22 +28,40 @@ export default function LocaleSwitcherSelect({
   const pathname = usePathname();
   const params = useParams();
 
+  // Ensure the component updates when the locale changes
+  useEffect(() => {
+    // This effect ensures the component re-renders when the locale changes
+  }, [defaultValue]);
+
   function onValueChange(nextLocale: string) {
+    if (nextLocale === defaultValue) return;
+
     startTransition(() => {
-      router.replace(
-        // @ts-expect-error -- TypeScript will validate that only known `params`
-        // are used in combination with a given `pathname`. Since the two will
-        // always match for the current route, we can skip runtime checks.
-        { pathname, params },
-        { locale: nextLocale as Locale }
-      );
+      try {
+        // First try the router.replace method
+        router.replace(
+          // @ts-expect-error -- TypeScript will validate that only known `params`
+          // are used in combination with a given `pathname`. Since the two will
+          // always match for the current route, we can skip runtime checks.
+          { pathname, params },
+          { locale: nextLocale as Locale }
+        );
+      } catch (error) {
+        // Fallback to window.location if router.replace fails
+        const currentPath = window.location.pathname;
+        const newPath = currentPath.replace(
+          `/${defaultValue}`,
+          `/${nextLocale}`
+        );
+        window.location.href = newPath;
+      }
     });
   }
 
   return (
     <div className="flex items-center gap-2">
       <Select
-        defaultValue={defaultValue}
+        value={defaultValue}
         onValueChange={onValueChange}
         disabled={isPending}
         name="locale-selector"

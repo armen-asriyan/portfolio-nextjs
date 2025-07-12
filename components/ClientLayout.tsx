@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import TopNavbar from "@/components/TopNavbar";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
@@ -21,6 +21,8 @@ export default function ClientLayoutWrapper({
   const [rightSidebarOpen, setRightSidebarOpen] = useState(
     isMobile ? false : true
   );
+
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Detect mobile
   useEffect(() => {
@@ -55,6 +57,31 @@ export default function ClientLayoutWrapper({
     }
   }, [leftSidebarOpen, rightSidebarOpen, isMobile]);
 
+  // Handle hash navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const targetSection = document.getElementById(hash);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+          setActiveSection(hash);
+          setIsLocked(true);
+        }
+      }
+    };
+
+    // Handle initial hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   // Track which section is in view
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -63,9 +90,17 @@ export default function ClientLayoutWrapper({
 
       // Update the active section
       if (entry && !isLocked) {
-        setActiveSection(entry.target?.id);
+        const sectionId = entry.target?.id;
+        if (sectionId && sectionId !== activeSection) {
+          setActiveSection(sectionId);
+        }
       }
     };
+
+    // Clean up existing observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
 
     // Create an IntersectionObserver
     const observer = new IntersectionObserver(handleIntersection, {
@@ -74,9 +109,16 @@ export default function ClientLayoutWrapper({
       rootMargin: "0px 0px -40% 0px", // Check the bottom of the viewport
     });
 
+    observerRef.current = observer;
+
     // Observe each section
     const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
+
+    // Set initial active section if none is set
+    if (!activeSection && sections.length > 0) {
+      setActiveSection(sections[0].id);
+    }
 
     let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -107,7 +149,7 @@ export default function ClientLayoutWrapper({
         clearTimeout(scrollTimeout);
       }
     };
-  }, [children, isLocked]); // Add children and isLocked as dependencies
+  }, [children, isLocked, activeSection]); // Add activeSection as dependency
 
   const handleSidebarClosing = () => {
     if (isMobile) {

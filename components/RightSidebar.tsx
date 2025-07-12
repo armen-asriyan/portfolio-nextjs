@@ -10,11 +10,12 @@ import {
   X,
 } from "lucide-react";
 import { motion } from "motion/react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 import useIsMounted from "@/hooks/useIsMounted";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 export default function RightSidebar({
   open,
@@ -36,9 +37,31 @@ export default function RightSidebar({
 
   const isMounted = useIsMounted();
 
+  // Reset active section when sidebar opens to ensure proper state
+  useEffect(() => {
+    if (open && !activeSection) {
+      // Find the first visible section
+      const sections = document.querySelectorAll("section[id]");
+      const firstSection = sections[0];
+      if (firstSection) {
+        setActiveSection(firstSection.id);
+      }
+    }
+  }, [open, activeSection, setActiveSection]);
+
   const handleClick = (section: string) => {
     setIsLocked(true);
     setActiveSection(section);
+
+    // Smooth scroll to section
+    const targetSection = document.getElementById(section);
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
     if (isMobile) onClose();
   };
 

@@ -70,6 +70,24 @@ export async function generateMetadata({
   };
 }
 
+// This metadata is used to generate the HTML tags in the <head> of the page
+// It is used by search engines and social media platforms to understand the
+// content of the page, and to generate previews of the page when it is shared
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Armen Asriyan",
+  jobTitle: "Junior Full-Stack Developer",
+  description:
+    "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies.",
+  image: "https://armenasriyan.dev//media/og-image.png",
+  sameAs: [
+    "https://github.com/armen-asriyan",
+    "https://www.linkedin.com/in/armen-asriyan/",
+  ],
+  url: "https://armenasriyan.dev/",
+};
+
 export default async function RootLayout({
   children,
   params,
@@ -77,32 +95,16 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
+  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: "layout" });
-  const title = t("meta.title");
-  const description = t("meta.description");
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Armen Asriyan",
-    jobTitle: title.replace("Armen Asriyan - ", ""),
-    description,
-    image: "https://armenasriyan.dev/media/og-image.png",
-    sameAs: [
-      "https://github.com/armen-asriyan",
-      "https://www.linkedin.com/in/armen-asriyan/",
-    ],
-    url: "https://armenasriyan.dev/",
-  };
-
   return (
     <html lang={locale} suppressHydrationWarning className="scroll-smooth">
       <head>
+        {/* JsonLd */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -120,7 +122,7 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>
+          <NextIntlClientProvider locale={locale}>
             <ClientLayout>{children}</ClientLayout>
           </NextIntlClientProvider>
         </ThemeProvider>
