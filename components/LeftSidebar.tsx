@@ -63,7 +63,7 @@ export default function LeftSidebar({
       </Button>
 
       <motion.div
-        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4 overflow-y-auto"
+        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4"
         initial="hidden"
         animate={open ? "visible" : "hidden"}
         variants={{
@@ -76,6 +76,7 @@ export default function LeftSidebar({
           },
         }}
       >
+
         {/* Lofi Radio */}
         <motion.div
           className="w-full h-full"
@@ -99,6 +100,7 @@ export default function LeftSidebar({
             closeSidebar={onClose}
           />
         </motion.div>
+
         {/* Cat and its thoughts */}
         <motion.div
           className="flex flex-col items-center justify-center gap-4 border border-gray-700 dark:border-gray-300 rounded-xl w-full h-full min-h-[200px] relative p-2"
@@ -141,9 +143,10 @@ export default function LeftSidebar({
           </div>
           <CatThoughts isRadioMuted={isRadioMuted} />
         </motion.div>
+
         {/* Actions and links */}
         <motion.div
-          className="flex flex-col items-center justify-center my-3 sm:mb-6 w-full"
+          className="flex flex-col items-center justify-center pb-2 my-3 sm:mb-6 w-full"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{
