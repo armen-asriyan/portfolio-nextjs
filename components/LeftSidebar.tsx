@@ -44,11 +44,13 @@ export default function LeftSidebar({
     <aside
       className={`fixed top-0 left-0 flex flex-col items-center justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-14 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
         open ? "translate-x-0 visible" : "-translate-x-full invisible "
-      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden`}
+      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden order-1`}
       inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
       aria-label={t("ariaLabels.sectionTitle")}
     >
+      <h2 className="sr-only">{t("ariaLabels.sectionTitle")}</h2>
+
       <Button
         variant="ghost"
         size="icon"
@@ -155,8 +157,8 @@ export default function LeftSidebar({
           href={`/cv/${tNav("cvLink")}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Download CV / Resume"
-          className="text-sm text-gray-300 hover:text-gray-100 md:text-base md:w-fit bg-gradient-to-t from-purple-800 to-violet-900 w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800"
+          aria-label={tNav("cv")}
+          className="text-sm text-gray-300 hover:text-gray-100 md:text-base md:w-fit bg-gradient-to-t from-purple-800 to-violet-900 w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800 min-w-[44px] min-h-[44px]"
         >
           {tNav("cv")}
           <Download className="inline-block" />

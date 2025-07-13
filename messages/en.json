@@ -17,11 +17,14 @@
     "title": "Projects",
     "project1": {
       "title": "Dashboard",
-      "description": "Data management and visualisation interface"
+      "description": "Data management and visualisation interface",
+      "scnreenShotAlt": "Screenshot of the Dashboard application"
     },
     "project2": {
       "title": "Company website",
-      "description": "Website presenting a company and its services"
+      "description": "Website presenting a company and its services",
+      "linkAriaLabel": "Visit the company website",
+      "scnreenShotAlt": "Screenshot of the company website"
     }
   },
   "contact": {
@@ -51,8 +54,12 @@
     "legalNotice": "Legal Notice",
     "privacyPolicy": "Privacy Policy",
     "scrollToTop": "Scroll to top",
+    "scrollTo": "Scroll to",
     "cv": "Download CV / Resume (PDF)",
-    "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_en.pdf"
+    "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_en.pdf",
+    "ariaLabels": {
+      "title": "Navigation links"
+    }
   },
   "leftSideBar": {
     "ariaLabels": {
@@ -65,7 +72,7 @@
       "idle": "This lofi radio stream is powered by YouTube. By selecting 'I consent', you agree to load the stream. Please note that YouTube may set cookies and collect usage data as part of this service.",
       "iConsent": "I consent",
       "iDoNotConsent": "I do not consent",
-      "readMore": "Read more",
+      "readMore": "Learn more",
       "refused": "You chose not to consent to loading the YouTube-powered lofi radio stream. No external content will be loaded.",
       "changeSettings": "Change settings"
     },

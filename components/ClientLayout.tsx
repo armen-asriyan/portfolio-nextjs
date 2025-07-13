@@ -166,14 +166,14 @@ export default function ClientLayoutWrapper({
       />
       <LightEffect />
       <div className="flex min-h-screen w-full antialiased text-foreground">
+        <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto order-2">
+          {children}
+        </main>
         <LeftSidebar
           open={leftSidebarOpen}
           onClose={handleSidebarClosing}
           isMobile={isMobile}
         />
-        <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto">
-          {children}
-        </main>
         <RightSidebar
           open={rightSidebarOpen}
           onClose={handleSidebarClosing}

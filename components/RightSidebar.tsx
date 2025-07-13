@@ -69,11 +69,13 @@ export default function RightSidebar({
     <aside
       className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
         open ? "translate-x-0 visible" : "translate-x-full invisible "
-      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden`}
+      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden order-3`}
       inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
       aria-label={t("ariaLabels.sectionTitle")}
     >
+      <h2 className="sr-only">{t("ariaLabels.sectionTitle")}</h2>
+
       <Button
         variant="ghost"
         size="icon"
@@ -87,8 +89,9 @@ export default function RightSidebar({
       </Button>
 
       {/* Nav buttons */}
-      <motion.div
+      <motion.nav
         className="flex flex-col items-start justify-start gap-4"
+        aria-label={tNav("ariaLabels.title")}
         initial="hidden"
         animate={open ? "visible" : "hidden"}
         variants={{
@@ -228,7 +231,7 @@ export default function RightSidebar({
             {tNav("contact")}
           </motion.div>
         </Link>
-      </motion.div>
+      </motion.nav>
 
       {/* Theme Switcher */}
       <motion.div

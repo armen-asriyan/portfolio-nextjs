@@ -3,6 +3,7 @@
 import useIsMounted from "@/hooks/useIsMounted";
 import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function ScrollIndicator({
@@ -12,6 +13,9 @@ export default function ScrollIndicator({
   isVisible: boolean;
   scrollTo: string;
 }) {
+  const t = useTranslations("nav");
+  const tSkills = useTranslations("skills");
+
   const isMounted = useIsMounted();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -27,7 +31,7 @@ export default function ScrollIndicator({
     >
       <motion.a
         href={`#${scrollTo}`}
-        aria-label="Scroll down"
+        aria-label={`${t("scrollTo")} ${tSkills("title")}`}
         initial={{ y: 0 }}
         animate={{ y: 10 }}
         transition={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function CatThoughts({
@@ -27,24 +28,42 @@ export default function CatThoughts({
     t("13"),
   ];
 
+  // Show full sentence every 3s (optimisation for screen readers)
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((i) => (i + 1) % words.length);
+    }, 3000 + words[currentIndex]?.length * 100); // match delay + type speed
+
+    return () => clearInterval(interval);
+  }, [currentIndex, words]);
+
   return (
     /**
      * Note: break-words is required for the text to wrap
      * whitespace-pre-line is required for the '\n' to work
      */
-    <h2
-      className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-center text-gray-900 dark:text-gray-300 p-7 break-words whitespace-pre-line max-w-full"
+    <h3
+      className="text-2xl font-bold text-center text-gray-900 dark:text-gray-300 p-7 break-words whitespace-pre-line max-w-full"
       style={{ fontFamily: "var(--font-vt323)" }}
     >
-      <Typewriter
-        words={words}
-        loop={0} // Infinite
-        cursor
-        cursorStyle=""
-        typeSpeed={100}
-        deleteSpeed={0}
-        delaySpeed={3000}
-      />
-    </h2>
+      {/* Visually animated version */}
+      <span aria-hidden="true">
+        <Typewriter
+          words={words}
+          loop={0}
+          cursor
+          cursorStyle=""
+          typeSpeed={100}
+          deleteSpeed={0}
+          delaySpeed={3000}
+        />
+      </span>
+      {/* Screen reader version (updated with full sentence every 3s) */}
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {words[currentIndex]}
+      </span>
+    </h3>
   );
 }

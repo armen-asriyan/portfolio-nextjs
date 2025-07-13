@@ -40,7 +40,10 @@ export default function Footer({
           {/* Nav and social links */}
           <div className="flex w-full flex-col md:flex-row items-start justify-center gap-5">
             {/* Nav links  */}
-            <div className="w-full flex flex-col items-start justify-center gap-4 px-2">
+            <nav
+              className="w-full flex flex-col items-start justify-center gap-4 px-2"
+              aria-label={tNav("ariaLabels.title")}
+            >
               <p className="uppercase text-xs text-gray-700 dark:text-gray-300/80">
                 NAV
               </p>
@@ -58,7 +61,7 @@ export default function Footer({
               >
                 {tNav("projects")}
               </Link>
-            </div>
+            </nav>
 
             {/* Social links  */}
             <div className="w-full flex flex-col items-start justify-center gap-4 px-2">
@@ -121,7 +124,7 @@ export default function Footer({
         </p>
         <div className="w-full flex items-center justify-center flex-1/2">
           <a
-            className="w-fit text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center"
+            className="w-fit text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center min-w-[44px] min-h-[44px]"
             href="#"
           >
             {tNav("scrollToTop")}
@@ -129,10 +132,13 @@ export default function Footer({
           </a>
         </div>
         {/* Legal Notice | Privacy Policy */}
-        <div className="w-full flex items-center justify-center gap-2.5 ">
+        <nav
+          className="w-full flex items-center justify-center gap-2.5"
+          aria-label={tNav("ariaLabels.title")}
+        >
           <Link
             href="/legal"
-            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
+            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
             onClick={() => handleClick("")}
           >
             {tNav("legalNotice")}
@@ -142,12 +148,12 @@ export default function Footer({
           </span>
           <Link
             href="/privacy"
-            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
+            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
             onClick={() => handleClick("")}
           >
             {tNav("privacyPolicy")}
           </Link>
-        </div>
+        </nav>
       </div>
     </footer>
   );

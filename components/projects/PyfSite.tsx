@@ -12,6 +12,7 @@ export default function PyfSite() {
       href="https://printyourfeet.com"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={t("linkAriaLabel")}
     >
       <article className="group flex flex-col gap-2 bg-gradient-to-b from-sky-400/80 to-purple-300/70 dark:from-sky-400/30 dark:to-purple-800/30 rounded-2xl px-2.5 py-8 cursor-pointer transition-all hover:-translate-y-1">
         {/* Project top section */}
@@ -43,7 +44,7 @@ export default function PyfSite() {
         <div className="overflow-hidden rounded-2xl">
           <Image
             src="/media/projects/project-pyfShowcaseSite.png"
-            alt="Screenshot of the company website"
+            alt={t("scnreenShotAlt")}
             width={300}
             height={200}
             className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"

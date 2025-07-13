@@ -18,7 +18,7 @@ export function ThemeSwitcher() {
         variant="ghost"
         size="icon"
         onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-        className="inline-flex items-center justify-center cursor-pointer"
+        className="inline-flex items-center justify-center cursor-pointer min-w-[44px] min-h-[44px]"
         aria-label={
           resolvedTheme === "dark"
             ? t("ariaLabels.switchToLight")

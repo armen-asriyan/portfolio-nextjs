@@ -68,11 +68,11 @@ export default function LocaleSwitcherSelect({
         name="locale-selector"
       >
         <SelectTrigger
-          className="w-auto border-none bg-transparent px-2 py-1 text-sm font-medium uppercase shadow-none focus:ring-0"
+          className="w-auto border-none bg-transparent px-2 py-1 text-sm font-medium uppercase shadow-none focus:ring-0 min-w-[44px] min-h-[44px]"
           aria-label={label}
         >
           <Globe className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-          <SelectValue aria-label={label} />
+          <SelectValue aria-label={label} role="button" />
         </SelectTrigger>
         <SelectContent aria-label={label} role="listbox">
           {children}

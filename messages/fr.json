@@ -17,11 +17,14 @@
     "title": "Projets",
     "project1": {
       "title": "Tableau de bord",
-      "description": "Interface de gestion et visualisation de données"
+      "description": "Interface de gestion et visualisation de données",
+      "scnreenShotAlt": "Capture d'ecran du tableau de bord"
     },
     "project2": {
       "title": "Site web d'entreprise",
-      "description": "Site web présentant une entreprise et ses services"
+      "description": "Site web présentant une entreprise et ses services",
+      "linkAriaLabel": "Ouvrir le site web d'entreprise",
+      "scnreenShotAlt": "Capture d'ecran du site web d'entreprise"
     }
   },
   "contact": {
@@ -51,8 +54,12 @@
     "legalNotice": "Mentions légales",
     "privacyPolicy": "Politique de confidentialité",
     "scrollToTop": "Retour en haut",
+    "scrollTo": "Défiler vers",
     "cv": "Télécharger le CV (PDF)",
-    "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_fr.pdf"
+    "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_fr.pdf",
+    "ariaLabels": {
+      "title": "Liens de navigation"
+    }
   },
   "leftSideBar": {
     "ariaLabels": {

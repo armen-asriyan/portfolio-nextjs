@@ -64,7 +64,7 @@ export default function PyfDashboard() {
       <div className="overflow-hidden rounded-2xl">
         <Image
           src="/media/projects/project-pyfDashboard.png"
-          alt="Screenshot of the Dashboard application"
+          alt={t("scnreenShotAlt")}
           width={300}
           height={200}
           className="w-full h-auto transition-transform duration-300 ease-in-out group-hover:scale-105"

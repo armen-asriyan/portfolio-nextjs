@@ -192,7 +192,7 @@ export default function LofiRadio({
             />
           ) : (
             <div className="w-full min-h-[200px] h-full">
-              <div className="w-full h-full text-sm font-semibold bg-white/90 text-gray-900 dark:bg-black/70 dark:text-gray-100 p-4 select-text">
+              <div className="w-full h-full text-sm/normal font-semibold bg-white/90 text-gray-900 dark:bg-black/70 dark:text-gray-100 p-4 select-text">
                 <div>
                   {consentGiven === undefined && <p>{t("consent.idle")}</p>}
                   {consentGiven === false && <p>{t("consent.refused")}</p>}
