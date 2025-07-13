@@ -118,42 +118,50 @@ export default function Footer({
       </div>
 
       {/* Legal */}
-      <div className="w-full flex flex-col md:flex-row items-center justify-center gap-2.5 border-t border-gray-300/30 pt-5 px-8 md:px-16">
-        <p className="w-full text-sm text-gray-700 dark:text-gray-300/80 leading-6 text-center md:text-left">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-4 border-t border-gray-300/30 pt-5 px-6 md:px-16">
+        {/* Copyright */}
+        <p className="text-center text-sm text-gray-700 dark:text-gray-300/80 leading-6">
           &copy; {new Date().getFullYear()} Armen Asriyan. {t("copyright")}
         </p>
-        <div className="w-full flex items-center justify-center flex-1/2">
-          <a
-            className="w-fit text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white inline-flex items-end justify-center min-w-[44px] min-h-[44px]"
-            href="#"
-          >
-            {tNav("scrollToTop")}
-            <MoveUp className="inline-block leading-0 -translate-y-[0.5px]" />
-          </a>
-        </div>
-        {/* Legal Notice | Privacy Policy */}
+
+        {/* Navigation */}
         <nav
-          className="w-full flex items-end justify-center gap-2.5 min-w-[44px] min-h-[44px]"
+          className="flex items-center justify-center"
           aria-label={tNav("ariaLabels.title")}
         >
           <Link
             href="/legal"
-            className="inline-flex items-end text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
+            className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 text-sm text-gray-700 dark:text-gray-300/80 underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
             onClick={() => handleClick("")}
           >
             {tNav("legalNotice")}
           </Link>
-          <span className="text-sm text-gray-700 dark:text-gray-300/80 text-center">
+          <span
+            className="inline-flex items-center justify-center w-fit min-h-[44px] text-sm text-gray-700 dark:text-gray-300/80"
+            aria-hidden="true"
+          >
             |
           </span>
           <Link
             href="/privacy"
-            className="inline-flex items-end text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
+            className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 text-sm text-gray-700 dark:text-gray-300/80 underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
             onClick={() => handleClick("")}
           >
             {tNav("privacyPolicy")}
           </Link>
         </nav>
+
+        {/* Scroll to Top */}
+        <div className="flex items-center justify-center">
+          <a
+            href="#top"
+            className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] px-2 text-sm text-gray-700 dark:text-gray-300/80 underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white"
+            onClick={() => window.scrollTo(0, 0)}
+          >
+            {tNav("scrollToTop")}
+            <MoveUp className="ml-1 -translate-y-[0.5px]" />
+          </a>
+        </div>
       </div>
     </footer>
   );

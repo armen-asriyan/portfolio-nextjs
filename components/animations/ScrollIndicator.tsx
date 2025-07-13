@@ -22,8 +22,11 @@ export default function ScrollIndicator({
   return (
     <motion.div
       className="w-full flex items-center justify-center md:justify-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: !isVisible && !isClicked ? 1 : 0 }}
+      initial={{ opacity: 0, visibility: "visible" }}
+      animate={{
+        opacity: !isVisible && !isClicked ? 1 : 0,
+        visibility: !isVisible && !isClicked ? "visible" : "hidden",
+      }}
       transition={{
         duration: 0.2,
         ease: "easeOut",

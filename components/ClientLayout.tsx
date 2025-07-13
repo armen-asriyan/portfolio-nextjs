@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import TopNavbar from "@/components/TopNavbar";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
@@ -21,8 +21,6 @@ export default function ClientLayoutWrapper({
   const [rightSidebarOpen, setRightSidebarOpen] = useState(
     isMobile ? false : true
   );
-
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Detect mobile
   useEffect(() => {
@@ -82,74 +80,52 @@ export default function ClientLayoutWrapper({
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  // Track which section is in view
+  // Track which section is in view - simple approach
   useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      // Find the first entry that is intersecting
-      const entry = entries.find((entry) => entry.isIntersecting);
-
-      // Update the active section
-      if (entry && !isLocked) {
-        const sectionId = entry.target?.id;
-        if (sectionId && sectionId !== activeSection) {
-          setActiveSection(sectionId);
-        }
-      }
-    };
-
-    // Clean up existing observer
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-    }
-
-    // Create an IntersectionObserver
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null, // Use the viewport
-      threshold: 0.1, // Trigger when 10% of the element is visible
-      rootMargin: "0px 0px -40% 0px", // Check the bottom of the viewport
-    });
-
-    observerRef.current = observer;
-
-    // Observe each section
-    const sections = document.querySelectorAll("section[id]");
-    sections.forEach((section) => observer.observe(section));
-
-    // Set initial active section if none is set
-    if (!activeSection && sections.length > 0) {
-      setActiveSection(sections[0].id);
-    }
-
-    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    // Reset isLocked after a delay
     const handleScroll = () => {
-      if (isLocked) {
-        // Clear existing timeout to debounce
-        if (scrollTimeout) {
-          clearTimeout(scrollTimeout);
-        }
+      if (isLocked) return;
 
-        // Set timeout to reset isLocked after delay (e.g. 300ms)
-        scrollTimeout = setTimeout(() => {
-          setIsLocked(false);
-          scrollTimeout = null;
-        }, 300);
+      const sections = document.querySelectorAll("section[id]");
+      const scrollY = window.scrollY + 200; // Offset for better detection
+
+      let currentSection = sections[0]?.id || null;
+
+      // Find the section whose top is closest to current scroll position
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        if (sectionTop <= scrollY) {
+          currentSection = section.id;
+        }
+      });
+
+      if (currentSection !== activeSection) {
+        setActiveSection(currentSection);
       }
     };
 
+    // Initial call
+    handleScroll();
+
+    // Listen to scroll events
     window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-
-      // If there's a pending timeout, clear it
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+    // Reset isLocked after navigation
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    const handleLockReset = () => {
+      if (isLocked) {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => setIsLocked(false), 300);
       }
     };
-  }, [children, isLocked, activeSection]); // Add activeSection as dependency
+
+    window.addEventListener("scroll", handleLockReset);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleLockReset);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+  }, [children, isLocked, activeSection]);
 
   const handleSidebarClosing = () => {
     if (isMobile) {
@@ -160,12 +136,17 @@ export default function ClientLayoutWrapper({
 
   return (
     <>
-      <TopNavbar
-        onMusicClick={() => setLeftSidebarOpen(true)}
-        onBarsClick={() => setRightSidebarOpen(true)}
-      />
+      {isMobile && (
+        <TopNavbar
+          onMusicClick={() => setLeftSidebarOpen(true)}
+          onBarsClick={() => setRightSidebarOpen(true)}
+        />
+      )}
       <LightEffect />
-      <div className="flex min-h-screen w-full antialiased text-foreground">
+      <div
+        className="flex min-h-screen w-full antialiased text-foreground"
+        id="main"
+      >
         <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto order-2">
           {children}
         </main>

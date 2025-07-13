@@ -42,7 +42,7 @@ export default function LeftSidebar({
 
   return (
     <aside
-      className={`fixed top-0 left-0 flex flex-col items-center justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-14 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
+      className={`fixed top-0 left-0 flex flex-col items-center justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-14 pt-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
         open ? "translate-x-0 visible" : "-translate-x-full invisible "
       } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden order-1`}
       inert={!open ? true : false}
@@ -63,7 +63,7 @@ export default function LeftSidebar({
       </Button>
 
       <motion.div
-        className="flex flex-col items-center justify-between h-[60%] lg:h-[50%] sm:w-[70%] md:w-[50%] lg:w-full gap-4"
+        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4"
         initial="hidden"
         animate={open ? "visible" : "hidden"}
         variants={{
@@ -101,7 +101,7 @@ export default function LeftSidebar({
         </motion.div>
         {/* Cat and its thoughts */}
         <motion.div
-          className="flex flex-col items-center justify-center gap-4 border border-gray-700 dark:border-gray-300 rounded-xl w-full h-full min-h-[200px]  relative p-2"
+          className="flex flex-col items-center justify-center gap-4 border border-gray-700 dark:border-gray-300 rounded-xl w-full h-full min-h-[200px] relative p-2"
           variants={{
             hidden: { opacity: 0, x: -200 },
             visible: {
@@ -141,28 +141,28 @@ export default function LeftSidebar({
           </div>
           <CatThoughts isRadioMuted={isRadioMuted} />
         </motion.div>
-      </motion.div>
-      {/* Actions and links */}
-      <motion.div
-        className="flex flex-col items-center justify-center gap-4 mb-4 sm:gap-6 sm:mb-6 w-full"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-        transition={{
-          delay: open ? 0.2 : 0, // Animate after the staggered items
-          duration: 0.5,
-          ease: "easeOut",
-        }}
-      >
-        <a
-          href={`/cv/${tNav("cvLink")}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={tNav("cv")}
-          className="text-sm text-gray-300 hover:text-gray-100 md:text-base md:w-fit bg-gradient-to-t from-purple-800 to-violet-900 w-full px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800 min-w-[44px] min-h-[44px]"
+        {/* Actions and links */}
+        <motion.div
+          className="flex flex-col items-center justify-center my-3 sm:mb-6 w-full"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{
+            delay: open ? 0.2 : 0, // Animate after the staggered items
+            duration: 0.5,
+            ease: "easeOut",
+          }}
         >
-          {tNav("cv")}
-          <Download className="inline-block" />
-        </a>
+          <a
+            href={`/cv/${tNav("cvLink")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={tNav("cv")}
+            className="text-sm text-gray-300 hover:text-gray-100 md:text-base w-full bg-gradient-to-t from-purple-800 to-violet-900 px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300 hover:bg-gradient-to-b hover:from-violet-900 hover:to-purple-800 min-w-[44px] min-h-[44px]"
+          >
+            {tNav("cv")}
+            <Download className="inline-block" />
+          </a>
+        </motion.div>
       </motion.div>
     </aside>
   );

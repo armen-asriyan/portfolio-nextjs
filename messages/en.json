@@ -57,6 +57,7 @@
     "scrollTo": "Scroll to",
     "cv": "Download CV / Resume (PDF)",
     "cvLink": "Armen_Asriyan_CV_Dev_Fullstack_en.pdf",
+    "skipToMain": "Skip to main content",
     "ariaLabels": {
       "title": "Navigation links"
     }

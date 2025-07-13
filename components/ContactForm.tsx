@@ -191,7 +191,7 @@ export function ContactForm() {
         )}
         <Button
           type="submit"
-          className={`w-full cursor-pointer ${
+          className={`w-full cursor-pointer focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
             success ? "bg-green-700 hover:bg-green-800 text-white" : ""
           }`}
           disabled={form.formState.isSubmitting || success}

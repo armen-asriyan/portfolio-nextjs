@@ -13,6 +13,7 @@ export default function PyfSite() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("linkAriaLabel")}
+      className="focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white/50 rounded-2xl"
     >
       <article className="group flex flex-col gap-2 bg-gradient-to-b from-sky-400/80 to-purple-300/70 dark:from-sky-400/30 dark:to-purple-800/30 rounded-2xl px-2.5 py-8 cursor-pointer transition-all hover:-translate-y-1">
         {/* Project top section */}
