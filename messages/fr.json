@@ -88,23 +88,23 @@
   },
   "catThoughts": {
     "messages": {
-      "0": "As-tu poussé ce dernier commit ?\n ...",
-      "1": "Bof, c'est probablement correct.",
+      "0": "Tu as push le dernier commit ?\n ...",
+      "1": "Bof, c'est probablement ok.",
       "2": "Peut-être que les bugs sont des fonctionnalités...",
-      "3-muted": "Ce rythme...\n c'est coupé ? Impoli.",
+      "3-muted": "Ce rythme...\n c'est mute ? Impoli.",
       "3": "Ce rythme déchire.",
       "4-muted": "J'étais dans l'ambiance, mais bon.",
-      "4": "Alerte tube certifié.",
+      "4": "Alerte banger certifié.",
       "5": "Je dors, arrêtez de me juger.",
       "6": ":3",
-      "7": "Purrr...optimisation des performances.",
+      "7": "Purrfection de la performance",
       "8-muted": "Pas de musique aujourd'hui, hein ?",
       "8": "Tempo purrfait.",
       "9": "Je ne sais pas ce que je fais,\n mais je le fais bien.",
       "10": "REST ? C'est dit.",
       "11": "=^-^=",
       "12": "Portfolio ? Plutôt purrfolio.",
-      "13": "Cliquez sur moi"
+      "13": "Clique sur moi"
     }
   },
   "rightSideBar": {
