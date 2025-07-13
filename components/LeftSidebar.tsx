@@ -63,7 +63,7 @@ export default function LeftSidebar({
       </Button>
 
       <motion.div
-        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4"
+        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4 overflow-y-auto"
         initial="hidden"
         animate={open ? "visible" : "hidden"}
         variants={{
