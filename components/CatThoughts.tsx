@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function CatThoughts({
@@ -11,22 +11,25 @@ export default function CatThoughts({
 }) {
   const t = useTranslations("catThoughts.messages");
 
-  const words = [
-    t("0"),
-    t("1"),
-    t("2"),
-    t(isRadioMuted ? "3-muted" : "3"),
-    t(isRadioMuted ? "4-muted" : "4"),
-    t("5"),
-    t("6"),
-    t("7"),
-    t(isRadioMuted ? "8-muted" : "8"),
-    t("9"),
-    t("10"),
-    t("11"),
-    t("12"),
-    t("13"),
-  ];
+  const words = useMemo(
+    () => [
+      t("0"),
+      t("1"),
+      t("2"),
+      t(isRadioMuted ? "3-muted" : "3"),
+      t(isRadioMuted ? "4-muted" : "4"),
+      t("5"),
+      t("6"),
+      t("7"),
+      t(isRadioMuted ? "8-muted" : "8"),
+      t("9"),
+      t("10"),
+      t("11"),
+      t("12"),
+      t("13"),
+    ],
+    [t, isRadioMuted]
+  );
 
   // Show full sentence every 3s (optimisation for screen readers)
   const [currentIndex, setCurrentIndex] = useState(0);
