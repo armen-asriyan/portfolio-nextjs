@@ -197,7 +197,7 @@ export default function LofiRadio({
                   {consentGiven === undefined && <p>{t("consent.idle")}</p>}
                   {consentGiven === false && <p>{t("consent.refused")}</p>}
 
-                  <div className="w-full text-right mt-2">
+                  <div className="w-full text-right mt-2 mb-8">
                     <Link
                       href="/privacy#tps-youtube"
                       className="text-gray-900 dark:text-gray-300 w-fit underline transition-colors duration-300 hover:text-gray-600 dark:hover:text-white "
@@ -207,7 +207,7 @@ export default function LofiRadio({
                     </Link>
                   </div>
 
-                  <div className="w-full absolute bottom-0 left-0 right-0 pb-5 border-t border-gray-300/30 backdrop-blur-sm z-50 ">
+                  <div className="w-full absolute bottom-0 left-0 right-0 pb-5 pt-2 border-t border-gray-300/30 backdrop-blur-sm z-50 ">
                     <div className="flex flex-row items-center justify-center gap-4">
                       {consentGiven === false ? (
                         <button

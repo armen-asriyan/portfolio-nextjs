@@ -133,12 +133,12 @@ export default function Footer({
         </div>
         {/* Legal Notice | Privacy Policy */}
         <nav
-          className="w-full flex items-center justify-center gap-2.5"
+          className="w-full flex items-end justify-center gap-2.5 min-w-[44px] min-h-[44px]"
           aria-label={tNav("ariaLabels.title")}
         >
           <Link
             href="/legal"
-            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
+            className="inline-flex items-end text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
             onClick={() => handleClick("")}
           >
             {tNav("legalNotice")}
@@ -148,7 +148,7 @@ export default function Footer({
           </span>
           <Link
             href="/privacy"
-            className="text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
+            className="inline-flex items-end text-sm text-gray-700 dark:text-gray-300/80 text-center underline underline-offset-2 transition-colors duration-300 hover:text-gray-400 dark:hover:text-white min-w-[44px] min-h-[44px]"
             onClick={() => handleClick("")}
           >
             {tNav("privacyPolicy")}
