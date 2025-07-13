@@ -1,8 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center" >
+  <img src="https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white">
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white">
+  <img src="https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white">
+</p>
+
+ <img src="https://img.shields.io/github/last-commit/armen-asriyan/portfolio-nextjs">
+
+# My Portfolio Website
+
+This is my personal portfolio website built with [Next.js](https://nextjs.org/) and [Shadcn UI](https://ui.shadcn.com/).
+
+## Tech Stack
+
+- **Next.js**: For server-side rendering and routing.
+- **Tailwind CSS**: For styling.
+- **Shadcn UI**: For UI components.
+- **React Hook Form**: For form handling.
+- **Zod**: For schema validation.
+- **React Simple Typewriter**: For typewriter effect.
+- **Motion (prev Framer Motion)**: For animations.
+- **Next Intl**: For internationalization.
+- **Resend**: For sending emails.
+- **Rate-limiter-flexible**: For rate limiting.
+- **Lucide and react-simple-icons**: For icons.
+  <br>
+- **pnpm**: For dependency management.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js (v14 or higher)**
+
+## Getting Started
+
+To run the development server, run:
 
 ```bash
 npm run dev
@@ -14,23 +46,40 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To create a production build, run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+# or
+bun build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To start the production server, run:
 
-## Learn More
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+# or
+bun start
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the portfolio.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Live Demo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Click [here](https://armenasriyan.dev/) to view the live demo
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you have any suggestions or find any bugs, your contribuions are highly appreciated! Feel free to [open an issue](https://github.com/armen-asriyan/portfolio-nextjs/issues/new/choose) or [submit a pull request](https://github.com/armen-asriyan/portfolio-nextjs/pulls) with your ideas and enhancements.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Show your support
+
+Give a ⭐️ if you like this project!
