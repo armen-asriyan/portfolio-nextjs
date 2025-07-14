@@ -21,9 +21,16 @@ export default function LeftSidebar({
   onClose: () => void;
   isMobile: boolean;
 }) {
+  const vwInPixels = (vw: number) => {
+    if (typeof window !== "undefined") {
+      return (window.innerWidth * vw) / 100;
+    }
+  };
+
   const { getRootProps, getHandleProps } = useResizable({
-    initialWidth: !isMobile && open ? "25vw" : "100vw",
-    maxWidth: 1000,
+    initialWidth: !isMobile && open ? `${vwInPixels(25)}vw` : "100vw",
+    maxWidth: vwInPixels(35),
+    minWidth: vwInPixels(25),
     initialHeight: "100vh",
     lockVertical: true,
     onDragStart: () => {
@@ -187,7 +194,7 @@ export default function LeftSidebar({
           className="absolute right-0 top-0 w-[2px] h-full bg-muted active:bg-violet-900"
           aria-hidden="true"
           {...getHandleProps({
-            minWidth: getRootProps().ref.current?.offsetWidth,
+            // minWidth: getRootProps().ref.current?.offsetWidth,
           })}
           style={{ cursor: "ew-resize" }}
         ></div>
