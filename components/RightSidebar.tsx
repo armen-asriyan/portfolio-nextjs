@@ -35,7 +35,7 @@ export default function RightSidebar({
 }) {
   const { getRootProps, getHandleProps } = useResizable({
     initialWidth: !isMobile && open ? "25vw" : "100vw",
-    maxWidth: 1000,
+    maxWidth: 700,
     initialHeight: "100vh",
     lockVertical: true,
     onDragStart: () => {
