@@ -34,7 +34,7 @@ export default function RightSidebar({
   isMobile: boolean;
 }) {
   const { getRootProps, getHandleProps } = useResizable({
-    initialWidth: !isMobile ? "25vw" : "100vw",
+    initialWidth: !isMobile && open ? "25vw" : "100vw",
     maxWidth: 1000,
     initialHeight: "100vh",
     lockVertical: true,
@@ -81,13 +81,13 @@ export default function RightSidebar({
 
   return (
     <aside
-      className={`fixed top-0 right-0 flex flex-col justify-between h-screen w-screen lg:w-1/4 z-50 lg:z-0 px-10 pt-20 pb-20 bg-background transition-transform duration-300 ease-in-out ${
-        open ? "translate-x-0" : "translate-x-full"
-      } lg:translate-x-0 lg:sticky  shadow-lg order-3 overflow-x-hidden`}
+      {...getRootProps()}
+      className={`fixed top-0 right-0 flex flex-col justify-between h-screen w-screen lg:w-1/4 z-50 lg:z-0 px-10 pt-20 pb-20 bg-background transition-transform duration-300 ease-in-out lg:translate-x-0 lg:sticky  shadow-lg order-3 overflow-x-hidden`}
+      // Using inline style to eliminate flash of unstyled content
+      style={{ transform: open ? "translateX(0)" : "translateX(100%)" }}
       inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
       aria-label={t("ariaLabels.sectionTitle")}
-      // {...getRootProps()}
     >
       <h2 className="sr-only">{t("ariaLabels.sectionTitle")}</h2>
 
