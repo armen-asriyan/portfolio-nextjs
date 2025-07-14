@@ -23,7 +23,6 @@ import {
   SiTailwindcss,
   SiVercel,
   SiTypescript,
-  SiGithub,
 } from "@icons-pack/react-simple-icons";
 import { useTranslations } from "next-intl";
 
@@ -50,7 +49,6 @@ const skills: Skill[] = [
   { icon: SiTailwindcss, hoverColor: "#38b2ac" },
   { icon: SiVercel, hoverColor: "#000", darkIcon: true },
   { icon: SiTypescript, hoverColor: "#3178c6" },
-  { icon: SiGithub, hoverColor: "#000", darkIcon: true },
 ] as const;
 
 export default function Skills() {
@@ -77,7 +75,7 @@ export default function Skills() {
         </h2>
 
         <motion.div
-          className="grid grid-cols-5 md:grid-cols-6 gap-1 md:gap-4"
+          className="flex flex-wrap  gap-4 w-full"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.8 }}

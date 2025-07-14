@@ -1,4 +1,10 @@
 "use client";
+import { useEffect } from "react";
+import { motion } from "motion/react";
+import { Link } from "@/i18n/navigation";
+import useIsMounted from "@/hooks/useIsMounted";
+import { useTranslations } from "next-intl";
+import { useResizable } from "react-use-resizable";
 
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -9,13 +15,8 @@ import {
   //  ToolCase,
   X,
 } from "lucide-react";
-import { motion } from "motion/react";
-import { Link } from "@/i18n/navigation";
 
-import useIsMounted from "@/hooks/useIsMounted";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
-import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 
 export default function RightSidebar({
   open,
@@ -32,6 +33,19 @@ export default function RightSidebar({
   setIsLocked: (clicked: boolean) => void;
   isMobile: boolean;
 }) {
+  const { getRootProps, getHandleProps } = useResizable({
+    initialWidth: !isMobile ? "25vw" : "100vw",
+    maxWidth: 1000,
+    initialHeight: "100vh",
+    lockVertical: true,
+    onDragStart: () => {
+      document.body.style.userSelect = "none";
+    },
+    onDragEnd: () => {
+      document.body.style.userSelect = "auto";
+    },
+    disabled: isMobile,
+  });
   const t = useTranslations("rightSideBar");
   const tNav = useTranslations("nav");
 
@@ -67,12 +81,13 @@ export default function RightSidebar({
 
   return (
     <aside
-      className={`fixed top-0 right-0 flex flex-col justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-5 py-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
-        open ? "translate-x-0 visible" : "translate-x-full invisible "
-      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden order-3`}
+      className={`fixed top-0 right-0 flex flex-col justify-between h-screen w-screen lg:w-1/4 z-50 lg:z-0 px-10 pt-20 pb-20 bg-background transition-transform duration-300 ease-in-out ${
+        open ? "translate-x-0" : "translate-x-full"
+      } lg:translate-x-0 lg:sticky  shadow-lg order-3 overflow-x-hidden`}
       inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
       aria-label={t("ariaLabels.sectionTitle")}
+      // {...getRootProps()}
     >
       <h2 className="sr-only">{t("ariaLabels.sectionTitle")}</h2>
 
@@ -249,6 +264,17 @@ export default function RightSidebar({
         </div>
         <ThemeSwitcher />
       </motion.div>
+      {!isMobile && (
+        <div
+          className="absolute left-0 top-0 w-[2px] h-full bg-muted active:bg-violet-900"
+          aria-hidden="true"
+          {...getHandleProps({
+            minWidth: getRootProps().ref.current?.offsetWidth,
+            reverse: true,
+          })}
+          style={{ cursor: "ew-resize" }}
+        ></div>
+      )}
     </aside>
   );
 }

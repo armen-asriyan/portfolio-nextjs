@@ -55,32 +55,7 @@ export default function ClientLayoutWrapper({
     }
   }, [leftSidebarOpen, rightSidebarOpen, isMobile]);
 
-  // Handle hash navigation
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash) {
-        const targetSection = document.getElementById(hash);
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-          setActiveSection(hash);
-          setIsLocked(true);
-        }
-      }
-    };
-
-    // Handle initial hash
-    handleHashChange();
-
-    // Listen for hash changes
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
-
-  // Track which section is in view - simple approach
+  // Track which section is in view
   useEffect(() => {
     const handleScroll = () => {
       if (isLocked) return;
@@ -111,10 +86,11 @@ export default function ClientLayoutWrapper({
 
     // Reset isLocked after navigation
     let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
     const handleLockReset = () => {
       if (isLocked) {
         if (scrollTimeout) clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(() => setIsLocked(false), 300);
+        scrollTimeout = setTimeout(() => setIsLocked(false), 100);
       }
     };
 
@@ -150,11 +126,13 @@ export default function ClientLayoutWrapper({
         <main className="w-full lg:w-1/2 px-0 lg:px-6 py-6 overflow-y-auto order-2">
           {children}
         </main>
+
         <LeftSidebar
           open={leftSidebarOpen}
           onClose={handleSidebarClosing}
           isMobile={isMobile}
         />
+
         <RightSidebar
           open={rightSidebarOpen}
           onClose={handleSidebarClosing}

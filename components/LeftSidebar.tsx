@@ -10,6 +10,7 @@ import CatThoughts from "./CatThoughts";
 import LofiRadio from "./LofiRadio";
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useResizable } from "react-use-resizable";
 
 export default function LeftSidebar({
   open,
@@ -20,6 +21,20 @@ export default function LeftSidebar({
   onClose: () => void;
   isMobile: boolean;
 }) {
+  const { getRootProps, getHandleProps } = useResizable({
+    initialWidth: !isMobile ? "25vw" : "100vw",
+    maxWidth: 1000,
+    initialHeight: "100vh",
+    lockVertical: true,
+    onDragStart: () => {
+      document.body.style.userSelect = "none";
+    },
+    onDragEnd: () => {
+      document.body.style.userSelect = "auto";
+    },
+    disabled: isMobile,
+  });
+
   const t = useTranslations("leftSideBar");
   const tGeneral = useTranslations("generalMessages");
   const tNav = useTranslations("nav");
@@ -42,12 +57,13 @@ export default function LeftSidebar({
 
   return (
     <aside
-      className={`fixed top-0 left-0 flex flex-col items-center justify-between h-screen overflow-y-auto w-screen lg:w-1/4 z-50 lg:z-0 px-14 pt-20 bg-background transition-transform duration-300 ease-in-out lg:visible ${
-        open ? "translate-x-0 visible" : "-translate-x-full invisible "
-      } lg:translate-x-0 lg:sticky border-r border-muted shadow-lg overflow-hidden order-1`}
+      className={`fixed top-0 left-0 flex flex-col justify-between items-center h-screen w-screen lg:w-1/4 z-50 lg:z-0 px-10 pt-20 pb-20 bg-background transition-transform duration-300 ease-in-out ${
+        open ? "translate-x-0" : "-translate-x-full"
+      } lg:translate-x-0 lg:sticky shadow-lg order-1`}
       inert={!open ? true : false}
       tabIndex={open ? 0 : -1}
       aria-label={t("ariaLabels.sectionTitle")}
+      {...getRootProps()}
     >
       <h2 className="sr-only">{t("ariaLabels.sectionTitle")}</h2>
 
@@ -63,7 +79,7 @@ export default function LeftSidebar({
       </Button>
 
       <motion.div
-        className="flex flex-col items-center justify-between sm:w-[70%] md:w-[50%] lg:w-full gap-4 mb-4"
+        className="flex flex-col items-center justify-between h-full md:h-[70%] lg:h-full w-full md:w-[80%] lg:w-full gap-4 mb-4"
         initial="hidden"
         animate={open ? "visible" : "hidden"}
         variants={{
@@ -76,7 +92,6 @@ export default function LeftSidebar({
           },
         }}
       >
-
         {/* Lofi Radio */}
         <motion.div
           className="w-full h-full"
@@ -146,7 +161,7 @@ export default function LeftSidebar({
 
         {/* Actions and links */}
         <motion.div
-          className="flex flex-col items-center justify-center pb-2 my-3 sm:mb-6 w-full"
+          className="flex flex-col items-center justify-center py-2 w-full"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{
@@ -167,6 +182,16 @@ export default function LeftSidebar({
           </a>
         </motion.div>
       </motion.div>
+      {!isMobile && (
+        <div
+          className="absolute right-0 top-0 w-[2px] h-full bg-muted active:bg-violet-900"
+          aria-hidden="true"
+          {...getHandleProps({
+            minWidth: getRootProps().ref.current?.offsetWidth,
+          })}
+          style={{ cursor: "ew-resize" }}
+        ></div>
+      )}
     </aside>
   );
 }
