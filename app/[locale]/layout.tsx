@@ -40,6 +40,7 @@ export async function generateMetadata({
     description,
     keywords: [
       "Armen Asriyan",
+      "Armen Asryan",
       "junior full-stack developer",
       "portfolio",
       "Next.js",
