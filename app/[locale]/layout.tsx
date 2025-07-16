@@ -53,7 +53,10 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: "https://armenasriyan.dev/",
+      url:
+        locale === "en"
+          ? `https://armenasriyan.dev/`
+          : `https://armenasriyan.dev/${locale}`,
       images: [
         {
           url: "https://armenasriyan.dev/media/og-image.png",

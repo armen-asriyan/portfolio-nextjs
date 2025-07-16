@@ -5,13 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// lib/generateAlternateLinks.ts
 export function generateAlternateLinks(locale: string, pathname: string = "") {
+  const canonical =
+    locale === "en"
+      ? `https://armenasriyan.dev${pathname}`
+      : `https://armenasriyan.dev/${locale}${pathname}`;
+
   return {
-    canonical: `https://armenasriyan.dev/${locale}${pathname}`,
+    canonical,
     languages: {
-      en: `https://armenasriyan.dev/${pathname}`,
+      en: `https://armenasriyan.dev${pathname}`,
       fr: `https://armenasriyan.dev/fr${pathname}`,
-      "x-default": `https://armenasriyan.dev/${pathname}`, // English as default
+      "x-default": `https://armenasriyan.dev${pathname}`, // English as default
     },
   };
 }
