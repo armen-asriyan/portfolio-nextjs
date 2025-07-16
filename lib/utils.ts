@@ -9,9 +9,9 @@ export function generateAlternateLinks(locale: string, pathname: string = "") {
   return {
     canonical: `https://armenasriyan.dev/${locale}${pathname}`,
     languages: {
-      en: `https://armenasriyan.dev/en${pathname}`,
+      en: `https://armenasriyan.dev/${pathname}`,
       fr: `https://armenasriyan.dev/fr${pathname}`,
-      "x-default": `https://armenasriyan.dev/en${pathname}`, // English as default
+      "x-default": `https://armenasriyan.dev/${pathname}`, // English as default
     },
   };
 }
