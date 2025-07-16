@@ -7,6 +7,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { generateAlternateLinks } from "@/lib/utils";
 
 const pixelFont = VT323({
   variable: "--font-vt323",
@@ -48,6 +49,7 @@ export async function generateMetadata({
       "TypeScript",
       "Node.js",
     ],
+    alternates: generateAlternateLinks(locale),
     openGraph: {
       title,
       description,

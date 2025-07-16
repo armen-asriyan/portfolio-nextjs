@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server";
 // };
 
 import type { Metadata } from "next";
+import { generateAlternateLinks } from "@/lib/utils";
 
 export async function generateMetadata({
   params,
@@ -36,6 +37,7 @@ export async function generateMetadata({
       "portfolio privacy",
       "contact form data",
     ],
+    alternates: generateAlternateLinks(locale, "/privacy"),
     robots: "index, follow",
     openGraph: {
       title: `${t("meta.title")} - Armen Asriyan`,
