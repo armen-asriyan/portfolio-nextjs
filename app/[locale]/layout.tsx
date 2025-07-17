@@ -84,6 +84,13 @@ const jsonLd = {
   "@type": "Person",
   name: "Armen Asriyan",
   jobTitle: "Junior Full-Stack Developer",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bayonne",
+    addressRegion: "Nouvelle-Aquitaine",
+    postalCode: "64100",
+    addressCountry: "France",
+  },
   description:
     "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies.",
   image: "https://armenasriyan.dev//media/og-image.png",
