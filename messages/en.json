@@ -279,5 +279,11 @@
   },
   "generalMessages": {
     "unsupportedAudio": "Your browser does not support the audio element."
+  },
+  "notFound": {
+    "title": "404",
+    "description": "Page not found.",
+    "link": "Go to home page",
+    "huh": "huh"
   }
 }

@@ -279,5 +279,11 @@
   },
   "generalMessages": {
     "unsupportedAudio": "Votre navigateur ne prend pas en charge l'élément audio."
+  },
+  "notFound": {
+    "title": "404",
+    "description": "Page non trouvée.",
+    "link": "Retour à la page d'accueil",
+    "huh": "hein"
   }
 }
