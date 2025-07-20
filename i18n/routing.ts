@@ -11,7 +11,7 @@ export const routing = defineRouting({
   localePrefix: "as-needed",
 
   // Remove the locale cookie
-  // localeCookie: false,
+  localeCookie: false,
 
   // Disable locale detection
   // localeDetection: false,
