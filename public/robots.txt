@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 Allow: /fr/
 
-Sitemap: https://armenasriyan.dev/sitemap.xml
+Sitemap: https://www.armenasriyan.dev/sitemap.xml

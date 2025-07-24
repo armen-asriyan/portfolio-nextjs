@@ -81,7 +81,7 @@ export default function EmailTemplate({
         <br />
         <br />
         <a
-          href="https://armenasriyan.dev"
+          href="https://www.armenasriyan.dev"
           style={{
             color: "#2563eb",
             textDecoration: "none",

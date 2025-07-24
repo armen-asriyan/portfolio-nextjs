@@ -74,7 +74,7 @@ bun start
 
 ## Live Demo
 
-- Click [here](https://armenasriyan.dev/) to view the live demo
+- Click [here](https://www.armenasriyan.dev/) to view the live demo
 
 ## Contributing
 

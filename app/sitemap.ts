@@ -4,7 +4,7 @@ import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
 // Adapt this as necessary
-const host = "https://armenasriyan.dev";
+const host = "https://www.armenasriyan.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Adapt this as necessary

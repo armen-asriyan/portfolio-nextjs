@@ -9,15 +9,15 @@ export function cn(...inputs: ClassValue[]) {
 export function generateAlternateLinks(locale: string, pathname: string = "") {
   const canonical =
     locale === "en"
-      ? `https://armenasriyan.dev${pathname}`
-      : `https://armenasriyan.dev/${locale}${pathname}`;
+      ? `https://www.armenasriyan.dev${pathname}`
+      : `https://www.armenasriyan.dev/${locale}${pathname}`;
 
   return {
     canonical,
     languages: {
-      en: `https://armenasriyan.dev${pathname}`,
-      fr: `https://armenasriyan.dev/fr${pathname}`,
-      "x-default": `https://armenasriyan.dev${pathname}`, // English as default
+      en: `https://www.armenasriyan.dev${pathname}`,
+      fr: `https://www.armenasriyan.dev/fr${pathname}`,
+      "x-default": `https://www.armenasriyan.dev${pathname}`, // English as default
     },
   };
 }

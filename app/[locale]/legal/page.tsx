@@ -44,10 +44,10 @@ export async function generateMetadata({
     openGraph: {
       title: `${t("meta.title")} - Armen Asriyan`,
       description: t("meta.description"),
-      url: "https://armenasriyan.dev/legal",
+      url: "https://www.armenasriyan.dev/legal",
       images: [
         {
-          url: "https://armenasriyan.dev/media/og-image.png",
+          url: "https://www.armenasriyan.dev/media/og-image.png",
           width: 1200,
           height: 630,
           alt: `${t("meta.title")} - Armen Asriyan`,
@@ -58,7 +58,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${t("meta.title")} - Armen Asriyan`,
       description: t("meta.description"),
-      images: ["https://armenasriyan.dev/media/og-image.png"],
+      images: ["https://www.armenasriyan.dev/media/og-image.png"],
       creator: "@armenasriyan",
     },
   };

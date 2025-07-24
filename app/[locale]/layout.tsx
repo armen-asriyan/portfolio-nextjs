@@ -55,11 +55,11 @@ export async function generateMetadata({
       description,
       url:
         locale === "en"
-          ? `https://armenasriyan.dev/`
-          : `https://armenasriyan.dev/${locale}`,
+          ? `https://www.armenasriyan.dev/`
+          : `https://www.armenasriyan.dev/${locale}`,
       images: [
         {
-          url: "https://armenasriyan.dev/media/og-image.png",
+          url: "https://www.armenasriyan.dev/media/og-image.png",
           width: 1200,
           height: 630,
           alt: title,
@@ -70,7 +70,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["https://armenasriyan.dev/media/og-image.png"],
+      images: ["https://www.armenasriyan.dev/media/og-image.png"],
       creator: "@armenasriyan",
     },
   };
@@ -93,12 +93,12 @@ const jsonLd = {
   },
   description:
     "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies.",
-  image: "https://armenasriyan.dev//media/og-image.png",
+  image: "https://www.armenasriyan.dev//media/og-image.png",
   sameAs: [
     "https://github.com/armen-asriyan",
-    "https://www.linkedin.com/in/armen-asriyan/",
+    "https://www.www.linkedin.com/in/armen-asriyan/",
   ],
-  url: "https://armenasriyan.dev/",
+  url: "https://www.armenasriyan.dev/",
 };
 
 export default async function RootLayout({
