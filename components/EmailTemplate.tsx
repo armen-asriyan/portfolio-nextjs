@@ -53,6 +53,17 @@ export default function EmailTemplate({
           </a>
         </p>
 
+        <h3
+          style={{
+            margin: "0 0 8px 0",
+            color: "#333",
+            fontWeight: 500,
+            fontSize: "14px",
+          }}
+        >
+          {name} wrote:
+        </h3>
+
         <div
           style={{
             backgroundColor: "white",
@@ -77,9 +88,7 @@ export default function EmailTemplate({
           fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
         }}
       >
-        Sent via the portfolio&apos;s contact form.
-        <br />
-        <br />
+        Sent via{" "}
         <a
           href="https://www.armenasriyan.dev"
           style={{
@@ -88,8 +97,11 @@ export default function EmailTemplate({
           }}
         >
           armenasriyan.dev
-        </a>
-        &copy; {new Date().getFullYear()}
+        </a>{" "}
+        contact form.
+        <br />
+        <br />
+        &copy; Armen Asriyan {new Date().getFullYear()}
       </p>
     </div>
   );
