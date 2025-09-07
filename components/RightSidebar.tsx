@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { useResizable } from "react-use-resizable";
 
 import { Button } from "@/components/ui/button";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+// import { ThemeSwitcher } from "./ThemeSwitcher";
 import {
   House,
   Lightbulb,
@@ -269,7 +269,7 @@ export default function RightSidebar({
         <div className="w-full ml-6">
           <LocaleSwitcher />
         </div>
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
       </motion.div>
       {!isMobile && (
         <div

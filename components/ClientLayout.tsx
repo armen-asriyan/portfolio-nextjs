@@ -103,6 +103,12 @@ export default function ClientLayoutWrapper({
     };
   }, [children, isLocked, activeSection]);
 
+  // Lock the theme to 'dark'
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }, []);
+
   const handleSidebarClosing = () => {
     if (isMobile) {
       setLeftSidebarOpen(false);

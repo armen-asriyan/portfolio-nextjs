@@ -6,50 +6,9 @@ import SkillIcon from "@/components/SkillIcon";
 import ScrollIndicator from "./animations/ScrollIndicator";
 import { motion } from "motion/react";
 
-import {
-  SiJavascript,
-  SiReact,
-  SiExpress,
-  SiNodedotjs,
-  SiMongodb,
-  SiPostgresql,
-  SiSqlite,
-  SiHtml5,
-  SiCss,
-  SiFigma,
-  SiWordpress,
-  SiGit,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiVercel,
-  SiTypescript,
-} from "@icons-pack/react-simple-icons";
+import SkillList from "@/components/ui/SkillList";
+
 import { useTranslations } from "next-intl";
-
-type Skill = {
-  icon: React.ComponentType<{ className?: string }>;
-  hoverColor?: string;
-  darkIcon?: boolean;
-};
-
-const skills: Skill[] = [
-  { icon: SiJavascript, hoverColor: "#f7df1e" },
-  { icon: SiReact, hoverColor: "#61dafb" },
-  { icon: SiExpress, darkIcon: true },
-  { icon: SiNodedotjs, hoverColor: "#339933" },
-  { icon: SiMongodb, hoverColor: "#47a248" },
-  { icon: SiPostgresql, hoverColor: "#336791" },
-  { icon: SiSqlite, hoverColor: "#003b57" },
-  { icon: SiHtml5, hoverColor: "#e34f26" },
-  { icon: SiCss, hoverColor: "#663399" },
-  { icon: SiFigma, hoverColor: "#f24e1e" },
-  { icon: SiWordpress, hoverColor: "#21759b" },
-  { icon: SiGit, hoverColor: "#f05032" },
-  { icon: SiNextdotjs, hoverColor: "#000", darkIcon: true },
-  { icon: SiTailwindcss, hoverColor: "#38b2ac" },
-  { icon: SiVercel, hoverColor: "#000", darkIcon: true },
-  { icon: SiTypescript, hoverColor: "#3178c6" },
-] as const;
 
 export default function Skills() {
   const t = useTranslations("skills");
@@ -89,7 +48,7 @@ export default function Skills() {
             },
           }}
         >
-          {skills.map((skill, index) => (
+          {SkillList.map((skill, index) => (
             <motion.div
               key={index}
               variants={{

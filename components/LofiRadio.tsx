@@ -21,7 +21,6 @@ const streamIds = [
   "jfKfPfyJRdk", // lofi hip hop radio 📚 beats to relax/study to
   "S_MOd40zlYU", // dark ambient radio 🌃 music to escape/dream to
   "4xDzrJKXOOY", // synthwave radio 🌌 beats to chill/game to
-  "GluJS2IAe_s", // 🔴 Video Game Lofi & Chill Beats 🎮 24/7 Radio
   "-E6A7Og90iM", // The Legend of Zelda Lofi & Chill Radio (24/7)
 ];
 
@@ -266,7 +265,7 @@ export default function LofiRadio({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.2 }}
             >
-              <Volume2 className="w-5 h-5" />
+              <VolumeX className="w-5 h-5" />
             </motion.button>
           ) : (
             <motion.button
@@ -279,7 +278,7 @@ export default function LofiRadio({
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.2 }}
             >
-              <VolumeX className="w-5 h-5" />
+              <Volume2 className="w-5 h-5" />
             </motion.button>
           ))}
 
