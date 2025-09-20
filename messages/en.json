@@ -2,13 +2,13 @@
   "layout": {
     "meta": {
       "title": "Armen Asriyan - Junior Full-Stack Developer",
-      "description": "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies."
+      "description": "A personal website and portfolio of Armen Asriyan, a junior full-stack developer with experience in Next.js, React, TypeScript, Node.js, and various other technologies"
     }
   },
   "hero": {
     "title": "Hi, I'm Armen",
-    "subtitle1": "I'm a junior dev exploring the world of full-stack development.",
-    "subtitle2": "I enjoy creating clean, functional apps and constantly pushing myself to learn and improve."
+    "subtitle1": "I like breaking things (and sometimes fixing them)",
+    "subtitle2": "Check out some of my skills and projects below"
   },
   "skills": {
     "title": "Skills"

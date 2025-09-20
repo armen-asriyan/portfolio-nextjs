@@ -33,10 +33,9 @@ export default function SkillIcon({
 
   const baseClasses =
     "size-11 md:size-14 p-2 duration-300 ease-in-out transition-all hover:scale-110 hover:-translate-y-[1px] opacity-80 hover:opacity-100";
-
   return (
     <div
-      className={`group rounded-md border-2 border-gray-300 dark:border-accent text-gray-900 dark:text-gray-300 cursor-pointer transition-all hover:shadow-[0_0_10px_#d1d5db] relative`}
+      className={`group relative rounded-md border-2 border-gray-300 dark:border-accent text-gray-900  dark:text-gray-300 cursor-pointer transition-all hover:shadow-[0_0_10px_#d1d5db]`}
       style={{
         color: isDarkTheme ? "#e5e7eb" : undefined,
         transition: "color 0.3s ease-in-out",

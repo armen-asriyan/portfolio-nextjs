@@ -32,7 +32,7 @@ export default function Hero() {
         animate={{ y: 0, opacity: 1 }}
         transition={{
           duration: 0.4,
-       // delay: 0.5,
+          // delay: 0.5,
           ease: "easeOut",
         }}
       >
