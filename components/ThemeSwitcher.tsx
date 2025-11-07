@@ -4,11 +4,8 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 
 export function ThemeSwitcher() {
-  const t = useTranslations("themeSwitcher");
-
   const isMounted = useIsMounted();
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -20,15 +17,9 @@ export function ThemeSwitcher() {
         onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
         className="inline-flex items-center justify-center cursor-pointer min-w-[44px] min-h-[44px]"
         aria-label={
-          resolvedTheme === "dark"
-            ? t("ariaLabels.switchToLight")
-            : t("ariaLabels.switchToDark")
+          resolvedTheme === "dark" ? "Switch to light" : "Switch to dark"
         }
-        title={
-          resolvedTheme === "dark"
-            ? t("ariaLabels.switchToLight")
-            : t("ariaLabels.switchToDark")
-        }
+        title={resolvedTheme === "dark" ? "Switch to light" : "Switch to dark"}
         suppressHydrationWarning
       >
         {resolvedTheme === "dark" ? (

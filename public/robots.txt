@@ -3,6 +3,5 @@ Disallow: /nogooglebot/
 
 User-agent: *
 Allow: /
-Allow: /fr/
 
 Sitemap: https://www.armenasriyan.dev/sitemap.xml
