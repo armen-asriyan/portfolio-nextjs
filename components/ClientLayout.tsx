@@ -5,7 +5,6 @@ import TopNavbar from "@/components/TopNavbar";
 import LeftSidebar from "@/components/LeftSidebar";
 import RightSidebar from "@/components/RightSidebar";
 import Footer from "@/components/Footer";
-import LightEffect from "@/components/LightEffect";
 
 export default function ClientLayoutWrapper({
   children,
@@ -124,7 +123,6 @@ export default function ClientLayoutWrapper({
           onBarsClick={() => setRightSidebarOpen(true)}
         />
       )}
-      <LightEffect />
       <div
         className="flex min-h-screen w-full antialiased text-foreground"
         id="main"
