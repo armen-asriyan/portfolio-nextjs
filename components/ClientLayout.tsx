@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { V1Portfolio } from "./V1PortfolioBtn";
 
 export default function ClientLayoutWrapper({
   children,
@@ -34,6 +35,8 @@ export default function ClientLayoutWrapper({
         <div className="fixed right-2 bottom-2">
           <ThemeSwitcher />
         </div>
+
+        <V1Portfolio />
       </div>
     </>
   );

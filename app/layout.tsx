@@ -16,6 +16,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
+      <head>
+        <title>Armen</title>
+      </head>
       <body
         suppressHydrationWarning
         className={`${jetBrains.className} antialiased bg-background text-black dark:text-neutral`}
